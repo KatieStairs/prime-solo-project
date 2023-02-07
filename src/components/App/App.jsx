@@ -19,6 +19,8 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import StartCookin from '../StartCookin/StartCookin';
+import Clipboard from '../Clipboard/Clipboard';
 
 import './App.css';
 
@@ -66,6 +68,15 @@ function App() {
             path="/info"
           >
             <InfoPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/StartCookin"
+          >
+            <StartCookin />
+            {/* <Clipboard /> */}
           </ProtectedRoute>
 
           <Route
