@@ -29,7 +29,23 @@ function Nav() {
             </Link>
 
             <Link className="navLink" to="/info">
-              Info Page
+              Info
+            </Link>
+
+            <Link className="navLink" to="/StartCookin">
+              Start Cookin'
+            </Link>
+
+            <Link className="navLink" to="/EditRecipes">
+              Edit Recipes
+            </Link>
+
+            <Link className="navLink" to="/UnfinishedRecipes">
+              Unfinished Recipes
+            </Link>
+
+            <Link className="navLink" to="/FinishedRecipes">
+              Finished Recipes
             </Link>
 
             <LogOutButton className="navLink" />
