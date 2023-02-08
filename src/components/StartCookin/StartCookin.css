@@ -1,0 +1,65 @@
+.speechToText {
+   border: 10px;
+   width: 1000px;
+   margin: 1px auto;
+   position: relative;
+}
+
+/* Container {
+   width: 600px;
+   margin: 40px auto;
+   position: relative;
+}
+
+Heading {
+   text-align: center;
+   color: green;
+}
+
+Input1 {
+   height: 50px;
+   width: 100%;
+   padding: 0;
+   font-size: 25px;
+}
+
+Input2 {
+   height: 50px;
+   width: 100%;
+   padding: 0;
+   font-size: 25px;
+   margin-top: 70px;
+}
+
+clipboardButton {
+  padding: 20px; 
+  font-size: 20px; 
+  position: relative; 
+  left: 30%; 
+  margin-top: 10px; 
+  cursor: pointer;
+}
+
+/* fakeInput {
+    position: relative;
+    display: inline-block;
+    margin: 1px;
+}
+
+fakeInput input {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+    width: 100px;
+}
+
+fakeInput a {
+    position: relative;
+    display: block;
+    width: 100px;
+    z-index: 1;
+    text-decoration: none;
+    color: rgba(256, 256, 256, 0); hide anchor text, let input show
+    border: 1px solid transparent;
+} */ 

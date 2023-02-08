@@ -23,13 +23,18 @@
 
 //         <CopyToClipboard text={setValue}
 //           onCopy={() => setIsCopied(true)}>
-//           <button>Copy to clipboard with button</button>
+//           <button>Copy to clipboard</button>
 //         </CopyToClipboard>
 
 //         {isCopied ? <span style={{color: 'red'}}>Copied.</span> : null}
+//         <div>
+//             <input placeholder='paste'></input>
+//         </div>
 //       </div>
 //     );
 // }
+
+// //What gets pasted with this code is: function () { [native code] }
 
 // export default Clipboard;
 
