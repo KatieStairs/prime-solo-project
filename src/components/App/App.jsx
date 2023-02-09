@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import StartCookin from '../StartCookin/StartCookin';
 import Clipboard from '../Clipboard/Clipboard';
+import UnfinishedRecipes from '../UnfinishedRecipesPage/UnfinishedRecipesPage';
 
 import './App.css';
 
@@ -76,6 +77,15 @@ function App() {
             path="/StartCookin"
           >
             <StartCookin />
+            {/* <Clipboard /> */}
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/UnfinishedRecipes"
+          >
+            <UnfinishedRecipes />
             {/* <Clipboard /> */}
           </ProtectedRoute>
 

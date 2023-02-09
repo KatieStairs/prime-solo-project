@@ -1,13 +1,17 @@
 const express = require('express');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  console.log('GET /api/home');
-  pool.query('SELECT * from "unfinished_recipes";').then((response) => {
-    res.send(response.rows);
+router.get('/', rejectUnauthenticated, (req, res) => {
+  console.log('GET /api/UnfinishedRecipes');
+  pool
+    .query(`
+    SELECT * from "unfinished_recipes";
+    `).then((result) => {
+    res.send(result.rows);
   }).catch((error) => {
-    console.log('Error in GET /api/home', error)
+    console.log('Error in GET /api/UnfinishedRecipes', error)
     res.sendStatus(500);
   });
 });
