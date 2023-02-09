@@ -6,6 +6,7 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 import './StartCookin.css'
 import copy from "react-copy-to-clipboard"
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button'
 
 const appId = '563883d9-0e49-4424-8574-fdc92a4a7cbb';
 // const appId = process.env.SPEECHLY_API_KEY
@@ -79,7 +80,47 @@ const StartCookin = () => {
                     color="black"
                     fontSize={20}
                 >
+                    Recipe Ingredients: 
                     {transcript}
+                </Box>
+                <Button variant="contained">Edit</Button>
+                <Box
+                    mx={6}
+                    my={3}
+                    border={4}
+                    px={2}
+                    py={3}
+                    borderColor="black"
+                    height={300}
+                    width={800}
+                    display="flex"
+                    justifyContent="left"
+                    alignItems="left"
+                    bgcolor="white"
+                    color="black"
+                    fontSize={20}
+                >
+                    Recipe Directions:
+                    <Button variant="contained">Edit</Button>
+                </Box>
+                <Box
+                    mx={6}
+                    my={3}
+                    border={4}
+                    px={2}
+                    py={3}
+                    borderColor="black"
+                    height={300}
+                    width={800}
+                    display="flex"
+                    justifyContent="left"
+                    alignItems="left"
+                    bgcolor="white"
+                    color="black"
+                    fontSize={20}
+                >
+                    Recipe Notes:
+                    <Button variant="contained">Edit</Button>
                 </Box>
             </div>
                 {/* <input value={transcript} 

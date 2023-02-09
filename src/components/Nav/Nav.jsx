@@ -40,8 +40,8 @@ function Nav() {
               Start Cookin'
             </Link>
 
-            <Link className="navLink" to="/EditRecipes">
-              Edit Recipes
+            <Link className="navLink" to="/EditRecipe">
+              Edit Recipe
             </Link>
 
             <Link className="navLink" to="/UnfinishedRecipes">
