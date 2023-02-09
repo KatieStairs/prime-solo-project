@@ -27,10 +27,10 @@ function Nav() {
             <Link className="navLink" to="/user">
               User
             </Link>
-
+{/* 
             <Link className="navLink" to="/home">
               Home
-            </Link>
+            </Link> */}
 
             <Link className="navLink" to="/info">
               Info
