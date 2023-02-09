@@ -30,8 +30,9 @@ function EditRecipe() {
                 defaultValue=""
                 fullWidth
             />
-        <Button variant="contained">Save</Button>
+        {/* <Button variant="contained">Save</Button> */}
         </Box>
+        <Button variant="contained">Save</Button>
         <Box
             mx={6}
             my={3}
@@ -56,8 +57,8 @@ function EditRecipe() {
             defaultValue=""
             fullWidth
         />
-        <Button variant="contained">Save</Button>
         </Box>
+        <Button variant="contained">Save</Button>
         <Box
             mx={6}
             my={3}
@@ -82,8 +83,8 @@ function EditRecipe() {
             defaultValue=""
             fullWidth
         />
-        <Button variant="contained">Save</Button>
         </Box>
+        <Button variant="contained">Save</Button>
     </div>
     )
 }
