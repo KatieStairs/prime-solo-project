@@ -5,16 +5,22 @@ import Button from '@material-ui/core/Button';
 
 function FinishedRecipes() {
     const dispatch = useDispatch();
-    // const store = useReduxStore();
     const finishedRecipesList = useSelector(store => store.finishedRecipesList);
-    console.log(finishedRecipesList)
+
     useEffect(() => {
         dispatch({
             type: 'SAGA/FETCH_FINISHED'
         })
     }, []);
 
-
+    const deleteRecipe = (event) => {
+        useEffect(() => {
+            dispatch({
+                type: 'SAGA/DELETE_RECIPE',
+                payload: finished.id
+            })
+        }, []);
+    }
 
     return (
         <div>
@@ -39,7 +45,7 @@ function FinishedRecipes() {
                 >
                     {finished.finalized_recipe_name} By {finished.finalized_author}    
                     <Button variant="contained">View</Button>
-                    <Button variant="contained">Delete</Button>
+                    <Button variant="contained" onClick={deleteRecipe}>Delete</Button>
                 </Box>
                 })}
         </div>

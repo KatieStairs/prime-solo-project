@@ -23,4 +23,22 @@ router.post('/', (req, res) => {
   // POST route code here
 });
 
+router.delete('/:id', (req, res) => {
+  console.log('************', req.params.id)
+  const idToDelete = req.params.id;
+  const sqlQuery = `
+    DELETE FROM "finalizedRecipes"
+      WHERE "id" = $1;
+  `;
+  const sqlValue = [idToDelete];
+  pool.query(sqlQuery, sqlValue)
+  .then((response) => {
+    res.sendStatus(202)
+  })
+  .catch((error) => {
+    console.log('error in finalized DELETE', error);
+    res.sendStatus(500);
+  })
+});
+
 module.exports = router;
