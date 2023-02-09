@@ -23,8 +23,10 @@ import StartCookin from '../StartCookin/StartCookin';
 import Clipboard from '../Clipboard/Clipboard';
 import UnfinishedRecipes from '../UnfinishedRecipes/UnfinishedRecipes';
 import EditRecipe from '../EditRecipe/EditRecipe';
+import FinishedRecipes from '../FinishedRecipes/FinishedRecipes';
 
 import './App.css';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -96,6 +98,15 @@ function App() {
             path="/EditRecipe"
           >
             <EditRecipe />
+            {/* <Clipboard /> */}
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/FinishedRecipes"
+          >
+            <FinishedRecipes />
             {/* <Clipboard /> */}
           </ProtectedRoute>
 

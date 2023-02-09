@@ -83,7 +83,7 @@ const StartCookin = () => {
                     Recipe Ingredients: 
                     {transcript}
                 </Box>
-                <Button variant="contained">Edit</Button>
+                <Button variant="contained">Copy to Your Clipboard! Then: Edit Here</Button>
                 <Box
                     mx={6}
                     my={3}
@@ -101,8 +101,8 @@ const StartCookin = () => {
                     fontSize={20}
                 >
                     Recipe Directions:
-                    <Button variant="contained">Edit</Button>
                 </Box>
+                <Button variant="contained">Copy to Your Clipboard! Then: Edit Here</Button>
                 <Box
                     mx={6}
                     my={3}
@@ -120,8 +120,8 @@ const StartCookin = () => {
                     fontSize={20}
                 >
                     Recipe Notes:
-                    <Button variant="contained">Edit</Button>
                 </Box>
+                <Button variant="contained">Copy to Your Clipboard! Then: Edit Here</Button>
             </div>
                 {/* <input value={transcript} 
                     onChange={(e)=>setCopyText(e.target.value)} />
