@@ -36,8 +36,22 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
-  // POST route code here
+router.post('/Ingredients', rejectUnauthenticated, (req, res) => {
+  console.log(req.body)
+  const recipeIngredients = req.body.recipeIngredients;
+  console.log('************', req.body.recipeIngredients)
+  const sqlText = `
+  INSERT INTO "unfinished_recipes" ("recipe_name", "recipe_ingredients")
+  VALUES ($1, $2);
+  `
+  pool.query(sqlText, [recipeIngredients])
+    .then((result) => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log(`Error making database query ${sqlText}`, error)
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;
