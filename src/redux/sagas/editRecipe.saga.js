@@ -1,6 +1,19 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
+function* fetchRecipeToEdit(action) {
+    const idOfRecipeToEdit = action.payload;
+
+    const response = yield axios({
+        method: 'GET',
+        url: `/UnfinishedRecipes/${idOfRecipeToEdit}`
+    })
+    yield put({
+        type: 'SET_RECIPE_TO_EDIT',
+        payload: response.data
+    })
+}
+
 function* addIngredients(action) {
     try{
         yield axios({
@@ -50,6 +63,7 @@ function* editRecipeSaga() {
     yield takeEvery('ADD_INGREDIENTS', addIngredients);
     yield takeEvery('ADD_DIRECTIONS', addDirections);
     yield takeEvery('ADD_NOTES', addNotes);
+    yield takeEvery('FETCH_RECIPE_TO_EDIT', fetchRecipeToEdit);
 }
 
 export default editRecipeSaga;

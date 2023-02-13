@@ -33,6 +33,23 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
         })
 });
 
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+  const idToUpdate = req.params.id;
+  const sqlText = `
+    UPDATE "unfinished_recipes"
+      SET "recipe_name"=$1
+      WHERE id=$2
+  `;
+  pool.query(sqlText, [req.body.recipe_name, idToUpdate])
+    .then((results) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(`Error in db query ${sqlText}`, error)
+      res.sendStatus(500);
+    });
+});
+
 /**
  * POST route template
  */
@@ -41,8 +58,8 @@ router.post('/Ingredients', rejectUnauthenticated, (req, res) => {
   const recipeIngredients = req.body.recipeIngredients;
   console.log('************', req.body.recipeIngredients)
   const sqlText = `
-  INSERT INTO "unfinished_recipes" ("recipe_name", "recipe_ingredients")
-  VALUES ($1, $2);
+  INSERT INTO "unfinished_recipes" ("recipe_id", "recipe_name", "recipe_ingredients", "recipe_directions", "recipe_notes")
+  VALUES ($1, $2, $3, $4, $5);
   `
   pool.query(sqlText, [recipeIngredients])
     .then((result) => {

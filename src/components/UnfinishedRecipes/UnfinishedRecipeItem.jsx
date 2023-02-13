@@ -6,12 +6,12 @@ function UnfinishedRecipeItem({ unfinished }) {
     const history = useHistory();
 
     const goToEditIngredientsPage = () => {
-        history.push(`/EditRecipe/${unfinished.id}`)
+        history.push(`/EditRecipe/${unfinished.recipe_id}`)
     }
 
     return (
             <Box
-                key={unfinished.id}
+                key={unfinished.recipe_id}
                 mx={6}
                 my={3}
                 border={4}

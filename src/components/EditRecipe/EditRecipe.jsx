@@ -14,6 +14,14 @@ function EditRecipe() {
 
     // const IngredientsObject = {editedRecipeNameInput, editedIngredientsInput}
 
+    const handleEditedNameSubmit = (event) => {
+        event.preventDefault();
+        dispatch({
+            type: 'ADD_NAME',
+            payload: { recipe_id, editedRecipeNameInput }
+        })
+    }
+
     const handleEditedIngredientsSubmit = (event) => {
         event.preventDefault();
         dispatch({
@@ -70,6 +78,7 @@ function EditRecipe() {
                 fullWidth
             />
         </Box>
+        <Button variant="contained" onClick={handleEditedNameSubmit}>Save Recipe Name</Button>
         <Box onChange={(event) => setEditedIngredientsInput(event.target.value)}
             mx={6}
             my={2}

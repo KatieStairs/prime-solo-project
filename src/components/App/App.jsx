@@ -24,6 +24,7 @@ import Clipboard from '../Clipboard/Clipboard';
 import UnfinishedRecipesList from '../UnfinishedRecipes/UnfinishedRecipesList';
 import EditRecipe from '../EditRecipe/EditRecipe';
 import FinishedRecipes from '../FinishedRecipes/FinishedRecipes';
+import EditRecipeForm from '../EditRecipeForm/EditRecipeForm'
 
 import './App.css';
 
@@ -95,9 +96,18 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/EditRecipe/:id"
+            path="/EditRecipe"
           >
             <EditRecipe />
+            {/* <Clipboard /> */}
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/EditRecipe/:id"
+          >
+            <EditRecipeForm />
             {/* <Clipboard /> */}
           </ProtectedRoute>
 
