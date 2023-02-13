@@ -21,7 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import StartCookin from '../StartCookin/StartCookin';
 import Clipboard from '../Clipboard/Clipboard';
-import UnfinishedRecipes from '../UnfinishedRecipes/UnfinishedRecipes';
+import UnfinishedRecipesList from '../UnfinishedRecipes/UnfinishedRecipesList';
 import EditRecipe from '../EditRecipe/EditRecipe';
 import FinishedRecipes from '../FinishedRecipes/FinishedRecipes';
 
@@ -88,7 +88,7 @@ function App() {
             exact
             path="/UnfinishedRecipes"
           >
-            <UnfinishedRecipes />
+            <UnfinishedRecipesList />
             {/* <Clipboard /> */}
           </ProtectedRoute>
 
