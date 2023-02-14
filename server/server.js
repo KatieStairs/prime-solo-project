@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const unfinishedRouter = require('./routes/unfinished.router');
 const editRecipeRouter = require('./routes/editRecipe.router');
 const finishedRecipesRouter = require('./routes/finished.router');
+const startCookinRouter = require('./routes/startCookin.router')
 
 
 // Body parser middleware
@@ -27,6 +28,7 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
+app.use('/api/StartCookin', startCookinRouter);
 app.use('/api/UnfinishedRecipes', unfinishedRouter);
 app.use('/api/EditRecipe', editRecipeRouter);
 app.use('/api/FinishedRecipes', finishedRecipesRouter);

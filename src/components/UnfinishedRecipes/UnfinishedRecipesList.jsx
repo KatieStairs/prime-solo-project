@@ -21,7 +21,7 @@ function UnfinishedRecipesList() {
         <div>
             <h3>Unfinished Recipes List:</h3>
             {unfinishedRecipesList.map((unfinished) => {
-                    return <UnfinishedRecipeItem key={unfinished.id} unfinished={unfinished} />
+                    return <UnfinishedRecipeItem key={unfinished.recipe_id} unfinished={unfinished} />
                 //     <Box
                 //     key={unfinished.id}
                 //     mx={6}

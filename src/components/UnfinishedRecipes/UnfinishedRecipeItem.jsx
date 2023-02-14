@@ -6,12 +6,12 @@ function UnfinishedRecipeItem({ unfinished }) {
     const history = useHistory();
 
     const goToEditIngredientsPage = () => {
-        history.push(`/EditRecipe/${unfinished.id}`)
+        history.push(`/EditRecipe/${unfinished.recipe_id}`)
     }
 
     return (
             <Box
-                key={unfinished.id}
+                key={unfinished.recipe_id}
                 mx={6}
                 my={3}
                 border={4}
@@ -28,7 +28,7 @@ function UnfinishedRecipeItem({ unfinished }) {
                 fontSize={40}
             >
             {unfinished.recipe_name} By {unfinished.recipe_author}
-            <Button variant="contained" onClick={goToEditIngredientsPage}>Edit Ingredients</Button>
+            <Button variant="contained" onClick={goToEditIngredientsPage}>Edit Recipe</Button>
             <Button variant="contained">Share</Button>
         </Box>
     )
