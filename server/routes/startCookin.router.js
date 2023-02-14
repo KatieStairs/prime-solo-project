@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.post('/', rejectUnauthenticated, (req, res) => {
   const newRecipe = req.body;
+  console.log('post req.body', newRecipe);
   const sqlQuery = `
     INSERT INTO "unfinished_recipes"
     ("recipe_author", "recipe_name", "recipe_ingredients", "recipe_directions", "recipe_notes")
@@ -12,14 +13,16 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     ($1, $2, $3, $4, $5)
   `;
   const sqlValues = [
-    newRecipe.recipeAuthor,
-    newRecipe.recipeName,
-    newRecipe.recipeIngredients,
-    newRecipe.recipeDirections,
-    newRecipe.recipeNotes
+    newRecipe.author,
+    newRecipe.name,
+    newRecipe.ingredients,
+    newRecipe.directions,
+    newRecipe.notes
   ];
   pool.query(sqlQuery, sqlValues)
-  .then(() => { res.sendStatus(201); })
+  .then(() => { 
+    console.log('in post', sqlValues)
+    res.sendStatus(201); })
   .catch((error) => {
     console.log('Error in startCookin POST', error);
     res.sendStatus(500);
