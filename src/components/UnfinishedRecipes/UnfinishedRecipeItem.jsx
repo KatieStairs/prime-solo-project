@@ -28,7 +28,7 @@ function UnfinishedRecipeItem({ unfinished }) {
                 fontSize={40}
             >
             {unfinished.recipe_name} By {unfinished.recipe_author}
-            <Button variant="contained" onClick={goToEditIngredientsPage}>Edit Ingredients</Button>
+            <Button variant="contained" onClick={goToEditIngredientsPage}>Edit Recipe</Button>
             <Button variant="contained">Share</Button>
         </Box>
     )

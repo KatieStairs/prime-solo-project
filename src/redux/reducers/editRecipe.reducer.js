@@ -4,6 +4,9 @@ const recipeToEdit = (state={}, action) => {
     } else if (action.type === 'SET_RECIPE_NAME'){
         const newRecipeNameValue = action.payload;
         return{...state, recipe_name: newRecipeNameValue}
+    } else if (action.type === 'SET_RECIPE_INGREDIENTS'){
+        const newRecipeIngredientsValue = action.payload;
+        return{...state, recipe_ingredients: newRecipeIngredientsValue}
     }
     return state;
 };

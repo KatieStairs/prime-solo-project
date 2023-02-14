@@ -4,23 +4,24 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-    console.log('GET /api/UnfinishedRecipes');
+    console.log('GET /api/EditRecipe');
     pool
       .query(`
       SELECT * from "unfinished_recipes";
       `).then((result) => {
       res.send(result.rows);
     }).catch((error) => {
-      console.log('Error in GET /api/UnfinishedRecipes', error)
+      console.log('Error in GET /api/EditRecipe', error)
       res.sendStatus(500);
     });
   });
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
     const idOfRecipeToGet = req.params.id;
+    console.log('in /EditRecipe/2', idOfRecipeToGet)
     const sqlText = `
     SELECT * FROM "unfinished_recipes"
-        WHERE "id"=$1;
+        WHERE "recipe_id"=$1;
     `
     const sqlValues = [idOfRecipeToGet];
     pool.query(sqlText, sqlValues)
@@ -35,10 +36,11 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 
 router.put('/:id', rejectUnauthenticated, (req, res) => {
   const idToUpdate = req.params.id;
+  console.log('server put', req.params)
   const sqlText = `
     UPDATE "unfinished_recipes"
       SET "recipe_name"=$1
-      WHERE id=$2
+      WHERE "recipe_id"=$2
   `;
   pool.query(sqlText, [req.body.recipe_name, idToUpdate])
     .then((results) => {

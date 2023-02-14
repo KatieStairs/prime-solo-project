@@ -4,7 +4,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-  console.log('GET /api/UnfinishedRecipes');
+  console.log('GET /api/UnfinishedRecipes', 'should not be run for edit recipes');
   pool
     .query(`
     SELECT * from "unfinished_recipes";

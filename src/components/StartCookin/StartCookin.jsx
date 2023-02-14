@@ -1,6 +1,7 @@
 //With Speechly for continuous listening:
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { createSpeechlySpeechRecognition } from '@speechly/speech-recognition-polyfill';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
@@ -9,6 +10,7 @@ import copy from "react-copy-to-clipboard"
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button'
 import Input from '@material-ui/core/Input'
+import { NetworkWifiRounded } from '@material-ui/icons';
 
 const appId = '563883d9-0e49-4424-8574-fdc92a4a7cbb';
 // const appId = process.env.SPEECHLY_API_KEY
@@ -21,37 +23,65 @@ const StartCookin = () => {
 
     const {
         transcript,
+        interimTranscript,
+        finalTranscript,
         listening,
         resetTranscript,
         browserSupportsSpeechRecognition
         } = useSpeechRecognition();
     const startListening = () => SpeechRecognition.startListening({ continuous: true });
 
+    useEffect(() => {
+        if (finalTranscript !== '') {
+            console.log('Got the final result:', finalTranscript);
+        }
+    }, [interimTranscript, finalTranscript]);
+    
+
     if (!browserSupportsSpeechRecognition) {
         return <span>Browser doesn't support speech recognition.</span>;
-    }
-
-    const [copyText, setCopyText] = useState('');
-
-    const handleCopy = () => {
-        navigator.clipboard.writeText(copyText)
-        alert("Copied")
-    }
-
-    const handlePaste = () => {
-        return {transcript}
     }
 
     const [ingredientsInput, setIngredientsInput] = useState('')
     const [directionsInput, setDirectionsInput] = useState('')
     const [notesInput, setNotesInput] = useState('')
+    const [newId, setNewId] = useState(6)
+    const recipeToEdit = useSelector((store) => store.recipeToEdit);
 
-    const handleIngredientsSubmit = (event) => {
+    // const handleIngredientsSubmit = (event) => {
+    //     event.preventDefault();
+    //     dispatch({
+    //         type: 'ADD_INGREDIENTS',
+    //         payload: ingredientsInput
+    //     })
+    // }
+
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    const handleIngredientsChange = (event) => {
         event.preventDefault();
         dispatch({
-            type: 'ADD_INGREDIENTS',
+            type: 'SET_RECIPE_INGREDIENTS',
             payload: ingredientsInput
         })
+    }
+
+    console.log('*********', transcript)
+
+    const handleRecipeIngredientsSubmit = (event) => {
+        event.preventDefault();
+        const recipeObject = {recipe_id: NewId, recipe_ingredients: finalTranscript}
+        dispatch({
+            type: 'UPDATE_RECIPE_INGREDIENTS',
+            payload: recipeObject
+        })
+        history.push('/EditRecipe')
+    }
+
+    const goToEditPage = (event) => {
+        event.preventDefault();
+        history.push('/EditRecipe')
     }
 
     const handleDirectionsSubmit = (event) => {
@@ -93,7 +123,15 @@ const StartCookin = () => {
             <span  value={value} 
                 onChange={() => setValue(value)}>{transcript}</span>
             </div> */}
-            <form onSubmit={handleIngredientsSubmit}>
+            {/* <form>
+                <Input 
+                    type="text"
+                    value={{transcript} || ingredientsInput}
+                    onChange={handleIngredientsChange}
+                />
+                <button onClick={handleRecipeIngredientsSubmit}>Recipe Ingredients Submit</button>
+            </form> */}
+            <form onSubmit={handleRecipeIngredientsSubmit}>
                 <Box onChange={(event) => setIngredientsInput(event.target.value)}
                     mx={6}
                     my={3}
@@ -110,12 +148,12 @@ const StartCookin = () => {
                     color="black"
                     fontSize={20}
                 >
-                    Recipe Ingredients: 
+                    Recipe: 
                     {transcript}
                 </Box>
-                <Button variant="contained">Copy to Your Clipboard! Then: Edit Here</Button>
+                <Button variant="contained" type="submit" onClick={goToEditPage}>Copy to Your Clipboard! Then: Edit Here</Button>
                 </form>
-                <form onSubmit={handleDirectionsSubmit}>
+                {/* <form onSubmit={handleDirectionsSubmit}>
                 <Box onChange={(event) => setDirectionsInput(event.target.value)}
                     mx={6}
                     my={3}
@@ -156,7 +194,7 @@ const StartCookin = () => {
                     Recipe Notes:
                 </Box>
                 <Button variant="contained">Copy to Your Clipboard! Then: Edit Here</Button>
-            </form>
+            </form> */}
                 {/* <input value={transcript} 
                     onChange={(e)=>setCopyText(e.target.value)} />
                 <button onClick={handleCopy}>Copy</button>
