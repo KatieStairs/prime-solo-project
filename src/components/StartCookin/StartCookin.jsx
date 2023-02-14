@@ -42,10 +42,7 @@ const StartCookin = () => {
         return <span>Browser doesn't support speech recognition.</span>;
     }
 
-    const [ingredientsInput, setIngredientsInput] = useState('')
-    const [directionsInput, setDirectionsInput] = useState('')
-    const [notesInput, setNotesInput] = useState('')
-    const [newId, setNewId] = useState(6)
+    // const [newId, setNewId] = useState(6)
     const recipeToEdit = useSelector((store) => store.recipeToEdit);
 
     // const handleIngredientsSubmit = (event) => {
@@ -59,10 +56,14 @@ const StartCookin = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const handleIngredientsChange = (event) => {
+    const [ingredientsInput, setIngredientsInput] = useState('')
+    const [directionsInput, setDirectionsInput] = useState('')
+    const [notesInput, setNotesInput] = useState('')
+
+    const handleNewRecipeSubmit = (event) => {
         event.preventDefault();
         dispatch({
-            type: 'SET_RECIPE_INGREDIENTS',
+            type: 'CREATE_RECIPE',
             payload: ingredientsInput
         })
     }
@@ -131,7 +132,7 @@ const StartCookin = () => {
                 />
                 <button onClick={handleRecipeIngredientsSubmit}>Recipe Ingredients Submit</button>
             </form> */}
-            <form onSubmit={handleRecipeIngredientsSubmit}>
+            <form onSubmit={handleNewRecipeSubmit}>
                 <Box onChange={(event) => setIngredientsInput(event.target.value)}
                     mx={6}
                     my={3}
@@ -152,7 +153,46 @@ const StartCookin = () => {
                     {transcript}
                 </Box>
                 <Button variant="contained" type="submit" onClick={goToEditPage}>Copy to Your Clipboard! Then: Edit Here</Button>
+                <Box onChange={(event) => setDirectionsInput(event.target.value)}
+                    mx={6}
+                    my={3}
+                    border={4}
+                    px={2}
+                    py={3}
+                    borderColor="black"
+                    height={300}
+                    width={800}
+                    display="flex"
+                    justifyContent="left"
+                    alignItems="left"
+                    bgcolor="white"
+                    color="black"
+                    fontSize={20}
+                >
+                    Recipe Directions:
+                </Box>
+                {/* <Button variant="contained">Copy to Your Clipboard! Then: Edit Here</Button> */}
+                <Box onChange={(event) => setNotesInput(event.target.value)}
+                    mx={6}
+                    my={3}
+                    border={4}
+                    px={2}
+                    py={3}
+                    borderColor="black"
+                    height={300}
+                    width={800}
+                    display="flex"
+                    justifyContent="left"
+                    alignItems="left"
+                    bgcolor="white"
+                    color="black"
+                    fontSize={20}
+                >
+                    Recipe Notes:
+                </Box>
+                {/* <Button variant="contained">Copy to Your Clipboard! Then: Edit Here</Button> */}
                 </form>
+
                 {/* <form onSubmit={handleDirectionsSubmit}>
                 <Box onChange={(event) => setDirectionsInput(event.target.value)}
                     mx={6}
