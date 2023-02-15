@@ -8,10 +8,10 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 import './StartCookin.css'
 import copy from "react-copy-to-clipboard"
 import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button'
 import Input from '@material-ui/core/Input'
 import { NetworkWifiRounded } from '@material-ui/icons';
 import TextField from '@material-ui/core/TextField';
+import { Button, Snackbar } from '@mui/material'
 
 const StartCookin = () => {
   const [value, setValue] = useState('');
@@ -111,7 +111,12 @@ const StartCookin = () => {
               placeholder="Recipe Name"
               value={nameInput}
               onChange={(evt) => setNameInput(evt.target.value)} />
-            {/* <input
+            <input
+              type='text'
+              placeholder="Ingredients"
+              value={ingredientsInput}
+              onChange={(evt) => setIngredientsInput(evt.target.value)} />
+            <input
               type='text'
               placeholder="Directions"
               value={directionsInput}
@@ -120,9 +125,9 @@ const StartCookin = () => {
               type='text'
               placeholder="Notes"
               value={notesInput}
-              onChange={(evt) => setNotesInput(evt.target.value)} /> */}
+              onChange={(evt) => setNotesInput(evt.target.value)} />
             {/* <input type='submit' value='Add New Recipe' /> */}
-        </form>
+            </form>
             <form onSubmit={addNewRecipe}>
               <h4>Voice Notes</h4>
               <Box //onChange={(event) => setIngredientsInput(event.target.value)}
@@ -132,33 +137,34 @@ const StartCookin = () => {
                 px={2}
                 py={3}
                 borderColor="black"
-                height={200}
+                height={150}
                 width={800}
                 display="flex"
                 justifyContent="left"
                 alignItems="left"
                 bgcolor="white"
                 color="black"
-                fontSize={20}
+                fontSize={14}
               >
-              <TextField
+              {transcript}
+              {/* <TextField
                 id="outlined-multiline-static"
                 label=""
                 multiline
                 minRows={1.5}
                 defaultValue={transcript}
                 fullWidth
-              />
-              <Button onClick={(event) => setIngredientsInput(event.target.value)}>Ingredients</Button>
+              /> */}
+              {/* <Button onClick={(event) => setIngredientsInput(event.target.value)}>Ingredients</Button>
               <Button onClick={(event) => setDirectionsInput(event.target.value)}>Directions</Button>
-              <Button onClick={(event) => setNotesInput(event.target.value)}>Notes</Button>
-              <input type='submit' value='Add New Recipe' />
+              <Button onClick={(event) => setNotesInput(event.target.value)}>Notes</Button> */}
               {/* <Input
               type='text'
               placeholder="Ingredients"
               value={transcript}
               onChange={(evt) => setIngredientsInput(evt.target.value)} /> */}
               </Box>
+              <input type='submit' value='Add New Recipe' />
               {/* <Button onClick={(event) => setIngredientsInput(event.target.value)}>Ingredients</Button>
               <Button onClick={(event) => setDirectionsInput(event.target.value)}>Directions</Button>
               <Button onClick={(event) => setNotesInput(event.target.value)}>Notes</Button>

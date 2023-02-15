@@ -20,11 +20,11 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import StartCookin from '../StartCookin/StartCookin';
-import Clipboard from '../Clipboard/Clipboard';
 import UnfinishedRecipesList from '../UnfinishedRecipes/UnfinishedRecipesList';
 import EditRecipe from '../EditRecipe/EditRecipe';
 import FinishedRecipes from '../FinishedRecipes/FinishedRecipes';
-import EditRecipeForm from '../EditRecipeForm/EditRecipeForm'
+import EditRecipeForm from '../EditRecipeForm/EditRecipeForm';
+
 
 import './App.css';
 
@@ -81,7 +81,6 @@ function App() {
             path="/StartCookin"
           >
             <StartCookin />
-            {/* <Clipboard /> */}
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -98,7 +97,7 @@ function App() {
             exact
             path="/EditRecipe"
           >
-            <EditRecipe />
+            {/* <EditRecipe /> */}
             {/* <Clipboard /> */}
           </ProtectedRoute>
 
