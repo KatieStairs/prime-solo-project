@@ -83,95 +83,55 @@ const StartCookin = () => {
 
     return(
         <div>
-          <div className="speechToText">
-            <h4 className="instructions">Press Start to begin recording 
-                and the microphone will record continuously. 
-              <br></br>
-                If you would like to Pause, click the Pause button. 
-              <br></br>
-                To resume, click the Start button again.
-              <br></br>
-                Otherwise, you can press reset to clear the transcript</h4>
-            <h4 className="warning">MAKE SURE YOU HAVE COPIED YOUR 
-                RECIPE TO THE CLIPBOARD BEFORE RESETTING.</h4>
-            <h3>Microphone: {listening ? 'on' : 'off'}</h3>
-              <button onClick={startListening}>Start/Resume</button>
-              <button onClick={SpeechRecognition.stopListening}>Stop/Pause</button>
-              <button onClick={resetTranscript}>Reset</button>
-          </div>
-            <h3>Create New Recipe:</h3>
-            <form onSubmit={addNewRecipe}>
-            <input
-              type='text'
-              placeholder="Recipe Author"
-              value={authorInput}
-              onChange={(evt) => setAuthorInput(evt.target.value)} />
-            <input
-              type='text'
-              placeholder="Recipe Name"
-              value={nameInput}
-              onChange={(evt) => setNameInput(evt.target.value)} />
-            <input
-              type='text'
-              placeholder="Ingredients"
-              value={ingredientsInput}
-              onChange={(evt) => setIngredientsInput(evt.target.value)} />
-            <input
-              type='text'
-              placeholder="Directions"
-              value={directionsInput}
-              onChange={(evt) => setDirectionsInput(evt.target.value)} />
-            <input
-              type='text'
-              placeholder="Notes"
-              value={notesInput}
-              onChange={(evt) => setNotesInput(evt.target.value)} />
-            {/* <input type='submit' value='Add New Recipe' /> */}
-            </form>
-            <form onSubmit={addNewRecipe}>
-              <h4>Voice Notes</h4>
-              <Box //onChange={(event) => setIngredientsInput(event.target.value)}
-                mx={6}
-                my={3}
-                border={4}
-                px={2}
-                py={3}
-                borderColor="black"
-                height={150}
-                width={800}
+            <Box
+                mx={1}
+                my={1}
+                border={1}
+                px={1}
+                py={1}
+                borderColor="aqua"
+                height={50}
+                width={320}
                 display="flex"
                 justifyContent="left"
                 alignItems="left"
                 bgcolor="white"
                 color="black"
-                fontSize={14}
-              >
-              {transcript}
-              {/* <TextField
-                id="outlined-multiline-static"
-                label=""
-                multiline
-                minRows={1.5}
-                defaultValue={transcript}
-                fullWidth
-              /> */}
-              {/* <Button onClick={(event) => setIngredientsInput(event.target.value)}>Ingredients</Button>
-              <Button onClick={(event) => setDirectionsInput(event.target.value)}>Directions</Button>
-              <Button onClick={(event) => setNotesInput(event.target.value)}>Notes</Button> */}
-              {/* <Input
-              type='text'
-              placeholder="Ingredients"
-              value={transcript}
-              onChange={(evt) => setIngredientsInput(evt.target.value)} /> */}
-              </Box>
-              <input type='submit' value='Add New Recipe' />
-              {/* <Button onClick={(event) => setIngredientsInput(event.target.value)}>Ingredients</Button>
-              <Button onClick={(event) => setDirectionsInput(event.target.value)}>Directions</Button>
-              <Button onClick={(event) => setNotesInput(event.target.value)}>Notes</Button>
-              <input type='submit' value='Add New Recipe' /> */}
-              </form>
+                fontSize={10}
+            >
+                Press Start to begin recording 
+                and the microphone will record continuously. 
+                Otherwise, you can press reset to clear the transcript
+                MAKE SURE YOU HAVE COPIED YOUR 
+                RECIPE TO THE CLIPBOARD BEFORE RESETTING.
+            </Box>
+                <h3>Microphone: {listening ? 'on' : 'off'}</h3>
+                    <button onClick={startListening}>Start/Resume</button>
+                    <button onClick={SpeechRecognition.stopListening}>Stop/Pause</button>
+                    <button onClick={resetTranscript}>Reset</button>
+            <div>
+                <Box
+                    mx={6}
+                    my={3}
+                    border={4}
+                    px={2}
+                    py={3}
+                    borderColor="black"
+                    height={300}
+                    width={800}
+                    display="flex"
+                    justifyContent="left"
+                    alignItems="left"
+                    bgcolor="white"
+                    color="black"
+                    fontSize={20}
+                >
+                    {transcript}
+                </Box>
+            
             </div>
-  )
-}
+        </div>
+    );
+};
 
 export default StartCookin;
