@@ -1,3 +1,57 @@
+//FROM STARTCOOKIN:
+
+                {/* <input value={transcript} 
+                    onChange={(e)=>setCopyText(e.target.value)} />
+                <button onClick={handleCopy}>Copy</button>
+                <input value={value} readOnly></input>
+                <button onClick={handlePaste}>Paste</button> */}
+            {/* <div className="Container">
+                <input className="Input1" readOnly 
+                    type="text" 
+                    value={value} 
+                    // onChange={handleCopyText} 
+                    placeholder=''/>
+    
+                <button className="clipboardButton"onClick={copyToClipboard}>
+                    Copy to Clipboard
+                </button>
+    
+                <input className="Input2" 
+                    type="text" 
+                    placeholder='Enter the text you have copied' />
+            </div> */}
+            
+            {/* <span className="fakeInput">
+                <input type="text" value={transcript} readOnly/>
+                <a href="#">{value}</a>
+            </span> */}
+
+            {/* <CopyToClipboard text={setValue}
+                onCopy={() => setIsCopied(true)}>
+                <span>Copy to clipboard with span</span>
+            </CopyToClipboard>
+
+            <CopyToClipboard text={setValue}
+                onCopy={() => setIsCopied(true)}>
+                <div>
+                    <button>Copy to clipboard with button</button>
+                </div>
+                </CopyToClipboard>
+
+            {isCopied ? <span style={{color: 'red'}}>Copied.</span> : null}
+                {/* <p>{transcript}</p> */}
+                {/* <button
+                    data-paste="selector"
+                    data-done="paste sucessful"
+                >paste</button> */}
+
+                            {/* <div>
+            <span  value={value} 
+                onChange={() => setValue(value)}>{transcript}</span>
+            </div> */}
+
+//FROM CLIPBOARD:
+
 // import React, { useState } from 'react'
 // import {CopyToClipboard} from 'react-copy-to-clipboard';
 

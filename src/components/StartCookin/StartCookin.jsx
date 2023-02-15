@@ -42,26 +42,32 @@ const StartCookin = () => {
 
     return (
         <div>
-            <div className="speechToText">
-                <h4 className="instructions">Press Start to begin recording 
+            <Box
+                mx={1}
+                my={1}
+                border={1}
+                px={1}
+                py={1}
+                borderColor="aqua"
+                height={50}
+                width={320}
+                display="flex"
+                justifyContent="left"
+                alignItems="left"
+                bgcolor="white"
+                color="black"
+                fontSize={10}
+            >
+                Press Start to begin recording 
                 and the microphone will record continuously. 
-                <br></br>
-                If you would like to Pause, click the Pause button. 
-                <br></br>
-                To resume, click the Start button again.
-                <br></br>
-                Otherwise, you can press reset to clear the transcript</h4>
-                <h4 className="warning">MAKE SURE YOU HAVE COPIED YOUR 
-                RECIPE TO THE CLIPBOARD BEFORE RESETTING.</h4>
+                Otherwise, you can press reset to clear the transcript
+                MAKE SURE YOU HAVE COPIED YOUR 
+                RECIPE TO THE CLIPBOARD BEFORE RESETTING.
+            </Box>
                 <h3>Microphone: {listening ? 'on' : 'off'}</h3>
                     <button onClick={startListening}>Start/Resume</button>
                     <button onClick={SpeechRecognition.stopListening}>Stop/Pause</button>
                     <button onClick={resetTranscript}>Reset</button>
-            </div>
-            {/* <div>
-            <span  value={value} 
-                onChange={() => setValue(value)}>{transcript}</span>
-            </div> */}
             <div>
                 <Box
                     mx={6}
@@ -81,51 +87,8 @@ const StartCookin = () => {
                 >
                     {transcript}
                 </Box>
-            </div>
-                {/* <input value={transcript} 
-                    onChange={(e)=>setCopyText(e.target.value)} />
-                <button onClick={handleCopy}>Copy</button>
-                <input value={value} readOnly></input>
-                <button onClick={handlePaste}>Paste</button> */}
-            {/* <div className="Container">
-                <input className="Input1" readOnly 
-                    type="text" 
-                    value={value} 
-                    // onChange={handleCopyText} 
-                    placeholder=''/>
-    
-                <button className="clipboardButton"onClick={copyToClipboard}>
-                    Copy to Clipboard
-                </button>
-    
-                <input className="Input2" 
-                    type="text" 
-                    placeholder='Enter the text you have copied' />
-            </div> */}
             
-            {/* <span className="fakeInput">
-                <input type="text" value={transcript} readOnly/>
-                <a href="#">{value}</a>
-            </span> */}
-
-            {/* <CopyToClipboard text={setValue}
-                onCopy={() => setIsCopied(true)}>
-                <span>Copy to clipboard with span</span>
-            </CopyToClipboard>
-
-            <CopyToClipboard text={setValue}
-                onCopy={() => setIsCopied(true)}>
-                <div>
-                    <button>Copy to clipboard with button</button>
-                </div>
-                </CopyToClipboard>
-
-            {isCopied ? <span style={{color: 'red'}}>Copied.</span> : null}
-                {/* <p>{transcript}</p> */}
-                {/* <button
-                    data-paste="selector"
-                    data-done="paste sucessful"
-                >paste</button> */}
+            </div>
         </div>
     );
 };
