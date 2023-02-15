@@ -13,6 +13,89 @@ import Input from '@material-ui/core/Input'
 import { NetworkWifiRounded } from '@material-ui/icons';
 
 const StartCookin = () => {
+  const [value, setValue] = useState('');
+    const [isCopied, setIsCopied] = useState(false);
+
+    const {
+        transcript,
+        interimTranscript,
+        finalTranscript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition
+        } = useSpeechRecognition();
+    const startListening = () => SpeechRecognition.startListening({ continuous: true });
+
+    useEffect(() => {
+        if (finalTranscript !== '') {
+            console.log('Got the final result:', finalTranscript);
+        }
+    }, [interimTranscript, finalTranscript]);
+    
+
+    if (!browserSupportsSpeechRecognition) {
+        return <span>Browser doesn't support speech recognition.</span>;
+    }
+
+    // const [newId, setNewId] = useState(6)
+    // const recipeToEdit = useSelector((store) => store.recipeToEdit);
+
+    // // const handleIngredientsSubmit = (event) => {
+    // //     event.preventDefault();
+    // //     dispatch({
+    // //         type: 'ADD_INGREDIENTS',
+    // //         payload: ingredientsInput
+    // //     })
+    // // }
+
+    // const dispatch = useDispatch();
+    // const history = useHistory();
+
+    // const [ingredientsInput, setIngredientsInput] = useState('')
+    // const [directionsInput, setDirectionsInput] = useState('')
+    // const [notesInput, setNotesInput] = useState('')
+
+    // const handleNewRecipeSubmit = (event) => {
+    //     event.preventDefault();
+    //     dispatch({
+    //         type: 'CREATE_RECIPE',
+    //         payload: ingredientsInput
+    //     })
+    // }
+
+    // console.log('*********', transcript)
+
+    // const handleRecipeIngredientsSubmit = (event) => {
+    //     event.preventDefault();
+    //     const recipeObject = {recipe_id: NewId, recipe_ingredients: finalTranscript}
+    //     dispatch({
+    //         type: 'UPDATE_RECIPE_INGREDIENTS',
+    //         payload: recipeObject
+    //     })
+    //     history.push('/EditRecipe')
+    // }
+
+    // const goToEditPage = (event) => {
+    //     event.preventDefault();
+    //     history.push('/EditRecipe')
+    // }
+
+    // const handleDirectionsSubmit = (event) => {
+    //     event.preventDefault();
+    //     dispatch({
+    //         type: 'ADD_DIRECTIONS',
+    //         payload: directionsInput
+    //     })
+    // }
+
+    // const handleNotesSubmit = (event) => {
+    //     event.preventDefault();
+    //     dispatch({
+    //         type: 'ADD_NOTES',
+    //         payload: notesInput
+    //     })
+    // }
+
     const dispatch = useDispatch();
 
     const [authorInput, setAuthorInput] = useState('');
@@ -25,15 +108,6 @@ const StartCookin = () => {
 
     const addNewRecipe = (event) => {
       console.log('user', user.id, user.username, 'adding', nameInput)
-        // let newRecipe = {
-        //     author: authorInput,
-        //     name: nameInput,
-        //     ingredients: ingredientsInput,
-        //     directions: directionsInput,
-        //     notes: notesInput,
-        //     user: user.id
-        // }
-
         dispatch({
             type: 'SAGA/CREATE_RECIPE',
             payload: {
@@ -67,7 +141,187 @@ const StartCookin = () => {
 
     return(
         <div>
-        <h3>Create New Recipe:</h3>
+          <div className="speechToText">
+            <h4 className="instructions">Press Start to begin recording 
+                and the microphone will record continuously. 
+              <br></br>
+                If you would like to Pause, click the Pause button. 
+              <br></br>
+                To resume, click the Start button again.
+              <br></br>
+                Otherwise, you can press reset to clear the transcript</h4>
+            <h4 className="warning">MAKE SURE YOU HAVE COPIED YOUR 
+                RECIPE TO THE CLIPBOARD BEFORE RESETTING.</h4>
+            <h3>Microphone: {listening ? 'on' : 'off'}</h3>
+              <button onClick={startListening}>Start/Resume</button>
+              <button onClick={SpeechRecognition.stopListening}>Stop/Pause</button>
+              <button onClick={resetTranscript}>Reset</button>
+          </div>
+            {/* <div>
+              <span  value={value} 
+                onChange={() => setValue(value)}>{transcript}</span>
+            </div> */}
+            {/* <form>
+              <Input 
+                type="text"
+                value={{transcript} || ingredientsInput}
+                onChange={handleIngredientsChange}
+              />
+              <button onClick={handleRecipeIngredientsSubmit}>Recipe Ingredients Submit</button>
+            </form> */}
+                        <h3>Create New Recipe:</h3>
+        <form onSubmit={addNewRecipe}>
+            <input
+              type='text'
+              placeholder="Recipe Author"
+              value={authorInput}
+              onChange={(evt) => setAuthorInput(evt.target.value)} />
+            <input
+              type='text'
+              placeholder="Recipe Name"
+              value={nameInput}
+              onChange={(evt) => setNameInput(evt.target.value)} />
+            <input
+              type='text'
+              placeholder="Directions"
+              value={directionsInput}
+              onChange={(evt) => setDirectionsInput(evt.target.value)} />
+            <input
+              type='text'
+              placeholder="Notes"
+              value={notesInput}
+              onChange={(evt) => setNotesInput(evt.target.value)} />
+            <input type='submit' value='Add New Recipe' />
+        </form>
+            <form onSubmit={addNewRecipe}>
+              <Box onChange={(event) => setIngredientsInput(event.target.value)}
+                mx={6}
+                my={3}
+                border={4}
+                px={2}
+                py={3}
+                borderColor="black"
+                height={300}
+                width={800}
+                display="flex"
+                justifyContent="left"
+                alignItems="left"
+                bgcolor="white"
+                color="black"
+                fontSize={20}
+              >
+              <Input
+              type='text'
+              placeholder="Ingredients"
+              value={transcript}
+              onChange={(evt) => setIngredientsInput(evt.target.value)} />
+              </Box>
+              {/* <Button variant="contained" type="submit" onClick={goToEditPage}>Copy to Your Clipboard! Then: Edit Here</Button> */}
+              <Box onChange={(event) => setDirectionsInput(event.target.value)}
+                mx={6}
+                my={3}
+                border={4}
+                px={2}
+                py={3}
+                borderColor="black"
+                height={300}
+                width={800}
+                display="flex"
+                justifyContent="left"
+                alignItems="left"
+                bgcolor="white"
+                color="black"
+                fontSize={20}
+              >
+              Recipe Directions:
+              </Box>
+              {/* <Button variant="contained">Copy to Your Clipboard! Then: Edit Here</Button> */}
+              <Box onChange={(event) => setNotesInput(event.target.value)}
+                mx={6}
+                my={3}
+                border={4}
+                px={2}
+                py={3}
+                borderColor="black"
+                height={300}
+                width={800}
+                display="flex"
+                justifyContent="left"
+                alignItems="left"
+                bgcolor="white"
+                color="black"
+                fontSize={20}
+              >
+              Recipe Notes:
+              </Box>
+              {/* <Button variant="contained">Copy to Your Clipboard! Then: Edit Here</Button> */}
+            </form>
+    </div>
+    )
+}
+    {/* <form onSubmit={handleDirectionsSubmit}>
+              <Box onChange={(event) => setDirectionsInput(event.target.value)}
+                mx={6}
+                my={3}
+                border={4}
+                px={2}
+                py={3}
+                borderColor="black"
+                height={300}
+                width={800}
+                display="flex"
+                justifyContent="left"
+                alignItems="left"
+                bgcolor="white"
+                color="black"
+                fontSize={20}
+                >
+                Recipe Directions:
+                </Box>
+                <Button variant="contained">Copy to Your Clipboard! Then: Edit Here</Button>
+              </form>
+              <form onSubmit={handleNotesSubmit}>
+                <Box onChange={(event) => setNotesInput(event.target.value)}
+                  mx={6}
+                  my={3}
+                  border={4}
+                  px={2}
+                  py={3}
+                  borderColor="black"
+                  height={300}
+                  width={800}
+                  display="flex"
+                  justifyContent="left"
+                  alignItems="left"
+                  bgcolor="white"
+                  color="black"
+                  fontSize={20}
+                >
+                Recipe Notes:
+                </Box>
+                <Button variant="contained">Copy to Your Clipboard! Then: Edit Here</Button>
+              </form>  */}
+              {/* <input value={transcript} 
+                onChange={(e)=>setCopyText(e.target.value)} />
+              <button onClick={handleCopy}>Copy</button>
+              <input value={value} readOnly></input>
+              <button onClick={handlePaste}>Paste</button>
+              <div className="Container">
+                 <input className="Input1" readOnly 
+                     type="text" 
+                     value={value} 
+                     // onChange={handleCopyText} 
+                     placeholder=''/>
+    
+                 <button className="clipboardButton"onClick={copyToClipboard}>
+                     Copy to Clipboard
+                 </button>
+    
+                 <input className="Input2" 
+                     type="text" 
+                     placeholder='Enter the text you have copied' />
+            </div> */}
+        {/* <h3>Create New Recipe:</h3>
         <form onSubmit={addNewRecipe}>
             <input
               type='text'
@@ -101,10 +355,10 @@ const StartCookin = () => {
             return <li key={unfinished.recipe_id}>{unfinished.recipe_name}</li>
           })}
         </ul>
-        </div>
+        </div> */}
 
-    )
-}
+//     )
+// }
 
 // const appId = '563883d9-0e49-4424-8574-fdc92a4a7cbb';
 // // const appId = process.env.SPEECHLY_API_KEY
