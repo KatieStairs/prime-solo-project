@@ -47,6 +47,14 @@ const StartCookin = () => {
         setNotesInput('')
     }
 
+    const unfinishedRecipesList = useSelector(store => store.unfinishedRecipesList);
+
+    useEffect(() => {
+        dispatch({
+            type: 'SAGA/FETCH_UNFINISHED'
+        })
+    }, []);
+
     return(
         <div>
         <h3>Create New Recipe:</h3>
@@ -78,7 +86,12 @@ const StartCookin = () => {
               onChange={(evt) => setNotesInput(evt.target.value)} />
             <input type='submit' value='Add New Recipe' />
         </form>
-    </div>
+        <ul>
+          {unfinishedRecipesList.map((unfinished) => {
+            return <li key={unfinished.recipe_id}>{unfinished.recipe_name}</li>
+          })}
+        </ul>
+        </div>
 
     )
 }

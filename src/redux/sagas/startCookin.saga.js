@@ -2,7 +2,6 @@ import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* createRecipe (action) {
-    console.log('createRecipe *****', action.payload)
     try{
         const newRecipe = action.payload
         const response = yield axios({
