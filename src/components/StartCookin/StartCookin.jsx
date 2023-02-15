@@ -21,19 +21,29 @@ const StartCookin = () => {
     const [directionsInput, setDirectionsInput] = useState('');
     const [notesInput, setNotesInput] = useState('');
 
+    const user = useSelector(store => store.user)
+
     const addNewRecipe = (event) => {
-        event.preventDefault();
-        let newRecipe = {
-            author: authorInput,
-            name: nameInput,
-            ingredients: ingredientsInput,
-            directions: directionsInput,
-            notes: notesInput
-        }
+      console.log('user', user.id, user.username, 'adding', nameInput)
+        // let newRecipe = {
+        //     author: authorInput,
+        //     name: nameInput,
+        //     ingredients: ingredientsInput,
+        //     directions: directionsInput,
+        //     notes: notesInput,
+        //     user: user.id
+        // }
 
         dispatch({
             type: 'SAGA/CREATE_RECIPE',
-            payload: newRecipe
+            payload: {
+              recipe_author: authorInput,
+              recipe_name: nameInput,
+              recipe_ingredients: ingredientsInput,
+              recipe_directions: directionsInput,
+              recipe_notes: notesInput,
+              user_id: user.id
+          }
         })
 
         clearRecipeForm();

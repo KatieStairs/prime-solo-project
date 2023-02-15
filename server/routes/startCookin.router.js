@@ -17,25 +17,27 @@ router.get('/'), rejectUnauthenticated, (req, res) => {
 }
 
 router.post('/', rejectUnauthenticated, (req, res) => {
+  console.log('post req.body', req.body);
   const newRecipe = req.body;
-  console.log('post req.body', newRecipe);
   const sqlQuery = `
     INSERT INTO "unfinished_recipes"
-    ("recipe_author", "recipe_name", "recipe_ingredients", "recipe_directions", "recipe_notes")
+    ("recipe_author", "recipe_name", "recipe_ingredients", "recipe_directions", "recipe_notes", "user_id")
     VALUES
-    ($1, $2, $3, $4, $5)
+    ($1, $2, $3, $4, $5, $6)
   `;
   const sqlValues = [
-    newRecipe.author,
-    newRecipe.name,
-    newRecipe.ingredients,
-    newRecipe.directions,
-    newRecipe.notes
+    newRecipe.recipe_author,
+    newRecipe.recipe_name,
+    newRecipe.recipe_ingredients,
+    newRecipe.recipe_directions,
+    newRecipe.recipe_notes,
+    newRecipe.user_id
   ];
   pool.query(sqlQuery, sqlValues)
-  .then(() => { 
+  .then((response) => { 
     console.log('in post', sqlValues)
-    res.sendStatus(201); })
+    res.sendStatus(201); 
+  })
   .catch((error) => {
     console.log('Error in startCookin POST', error);
     res.sendStatus(500);

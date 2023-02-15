@@ -4,14 +4,22 @@ import axios from 'axios';
 function* createRecipe (action) {
     try{
         const newRecipe = action.payload
+        console.log('newRecipe in createRecipe:', newRecipe)
         const response = yield axios({
             method: 'POST',
             url: '/api/StartCookin',
-            data: newRecipe
+            data: {
+                recipe_author: newRecipe.recipe_author,
+                recipe_name: newRecipe.recipe_name,
+                recipe_ingredients: newRecipe.recipe_ingredients,
+                recipe_directions: newRecipe.recipe_directions,
+                recipe_notes: newRecipe.recipe_notes,
+                user_id: newRecipe.user_id
+            }
         })
-        yield put({
-            type: 'SAGA/FETCH_UNFINISHED',
-        })
+        // yield put({
+        //     type: 'SAGA/FETCH_UNFINISHED',
+        // })
     } catch (error) {
         console.log('createRecipe fail:', error);
     }

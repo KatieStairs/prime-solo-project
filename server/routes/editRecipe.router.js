@@ -55,12 +55,12 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 /**
  * POST route template
  */
-router.post('/Ingredients', rejectUnauthenticated, (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   console.log(req.body)
   const recipeIngredients = req.body.recipeIngredients;
   console.log('************', req.body.recipeIngredients)
   const sqlText = `
-  INSERT INTO "unfinished_recipes" ("recipe_id", "recipe_name", "recipe_ingredients", "recipe_directions", "recipe_notes")
+  INSERT INTO "unfinished_recipes" ("recipe_author, "recipe_name", "recipe_ingredients", "recipe_directions", "recipe_notes")
   VALUES ($1, $2, $3, $4, $5);
   `
   pool.query(sqlText, [recipeIngredients])
