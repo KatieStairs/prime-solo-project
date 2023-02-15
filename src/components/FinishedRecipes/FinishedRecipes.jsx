@@ -3,25 +3,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 
-function UnfinishedRecipes() {
+function FinishedRecipes() {
     const dispatch = useDispatch();
-    // const store = useReduxStore();
-    const unfinishedRecipesList = useSelector(store => store.unfinishedRecipesList);
+    const finishedRecipesList = useSelector(store => store.finishedRecipesList);
 
     useEffect(() => {
         dispatch({
-            type: 'SAGA/FETCH_UNFINISHED'
+            type: 'SAGA/FETCH_FINISHED'
         })
     }, []);
 
-
+    const deleteRecipe = (event) => {
+        useEffect(() => {
+            dispatch({
+                type: 'SAGA/DELETE_RECIPE',
+                payload: finished.id
+            })
+        }, []);
+    }
 
     return (
         <div>
-            <h3>Unfinished Recipes List:</h3>
-            {unfinishedRecipesList.map((unfinished) => {
+            <h3>Finished Recipes List:</h3>
+            {finishedRecipesList.map((finished) => {
                     return <Box
-                    key={unfinished.id}
+                    key={finished.id}
                     mx={6}
                     my={3}
                     border={4}
@@ -37,13 +43,13 @@ function UnfinishedRecipes() {
                     color="black"
                     fontSize={40}
                 >
-                    {unfinished.recipe_name} By {unfinished.recipe_author}    
-                    <Button variant="contained">Edit</Button>
-                    <Button variant="contained">Share</Button>
+                    {finished.finalized_recipe_name} By {finished.finalized_author}    
+                    <Button variant="contained">View</Button>
+                    <Button variant="contained" onClick={deleteRecipe}>Delete</Button>
                 </Box>
                 })}
         </div>
     )
 }
 
-export default UnfinishedRecipes;
+export default FinishedRecipes;

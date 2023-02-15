@@ -1,46 +1,87 @@
 //With Speechly for continuous listening:
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { createSpeechlySpeechRecognition } from '@speechly/speech-recognition-polyfill';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import './StartCookin.css'
 import copy from "react-copy-to-clipboard"
 import Box from '@material-ui/core/Box';
-
-const appId = '563883d9-0e49-4424-8574-fdc92a4a7cbb';
-// const appId = process.env.SPEECHLY_API_KEY
-const SpeechlySpeechRecognition = createSpeechlySpeechRecognition(appId);
-SpeechRecognition.applyPolyfill(SpeechlySpeechRecognition);
+import Input from '@material-ui/core/Input'
+import { NetworkWifiRounded } from '@material-ui/icons';
+import TextField from '@material-ui/core/TextField';
+import { Button, Snackbar } from '@mui/material'
 
 const StartCookin = () => {
-    const [value, setValue] = useState('');
+  const [value, setValue] = useState('');
     const [isCopied, setIsCopied] = useState(false);
 
     const {
         transcript,
+        interimTranscript,
+        finalTranscript,
         listening,
         resetTranscript,
         browserSupportsSpeechRecognition
         } = useSpeechRecognition();
     const startListening = () => SpeechRecognition.startListening({ continuous: true });
 
+    useEffect(() => {
+        if (finalTranscript !== '') {
+            console.log('Got the final result:', finalTranscript);
+        }
+    }, [interimTranscript, finalTranscript]);
+    
+
     if (!browserSupportsSpeechRecognition) {
         return <span>Browser doesn't support speech recognition.</span>;
     }
 
-    const [copyText, setCopyText] = useState('');
+    const dispatch = useDispatch();
 
-    const handleCopy = () => {
-        navigator.clipboard.writeText(copyText)
-        alert("Copied")
+    const [authorInput, setAuthorInput] = useState('');
+    const [nameInput, setNameInput] = useState('');
+    const [ingredientsInput, setIngredientsInput] = useState('');
+    const [directionsInput, setDirectionsInput] = useState('');
+    const [notesInput, setNotesInput] = useState('');
+
+    const user = useSelector(store => store.user)
+
+    const addNewRecipe = (event) => {
+      console.log('user', user.id, user.username, 'adding', nameInput)
+        dispatch({
+            type: 'SAGA/CREATE_RECIPE',
+            payload: {
+              recipe_author: authorInput,
+              recipe_name: nameInput,
+              recipe_ingredients: ingredientsInput,
+              recipe_directions: directionsInput,
+              recipe_notes: notesInput,
+              user_id: user.id
+          }
+        })
+
+        clearRecipeForm();
     }
 
-    const handlePaste = () => {
-        return {transcript}
+    const clearRecipeForm = () => {
+        setAuthorInput('');
+        setNameInput('');
+        setIngredientsInput('');
+        setDirectionsInput('')
+        setNotesInput('')
     }
 
+    const unfinishedRecipesList = useSelector(store => store.unfinishedRecipesList);
 
-    return (
+    useEffect(() => {
+        dispatch({
+            type: 'SAGA/FETCH_UNFINISHED'
+        })
+    }, []);
+
+    return(
         <div>
             <Box
                 mx={1}

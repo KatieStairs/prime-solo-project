@@ -20,10 +20,14 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import StartCookin from '../StartCookin/StartCookin';
-import Clipboard from '../Clipboard/Clipboard';
-import UnfinishedRecipes from '../UnfinishedRecipesPage/UnfinishedRecipesPage';
+import UnfinishedRecipesList from '../UnfinishedRecipes/UnfinishedRecipesList';
+import EditRecipe from '../EditRecipe/EditRecipe';
+import FinishedRecipes from '../FinishedRecipes/FinishedRecipes';
+import EditRecipeForm from '../EditRecipeForm/EditRecipeForm';
+
 
 import './App.css';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -77,7 +81,6 @@ function App() {
             path="/StartCookin"
           >
             <StartCookin />
-            {/* <Clipboard /> */}
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -85,7 +88,34 @@ function App() {
             exact
             path="/UnfinishedRecipes"
           >
-            <UnfinishedRecipes />
+            <UnfinishedRecipesList />
+            {/* <Clipboard /> */}
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/EditRecipe"
+          >
+            {/* <EditRecipe /> */}
+            {/* <Clipboard /> */}
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/EditRecipe/:id"
+          >
+            <EditRecipeForm />
+            {/* <Clipboard /> */}
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/FinishedRecipes"
+          >
+            <FinishedRecipes />
             {/* <Clipboard /> */}
           </ProtectedRoute>
 
