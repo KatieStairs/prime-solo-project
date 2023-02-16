@@ -16,8 +16,21 @@ function* fetchUnfinishedRecipes() {
     }
 }
 
+function* deleteRecipe(action) {
+    const idToDelete = action.payload;
+    console.log('idToDelete', idToDelete);
+    const response = yield axios({
+        method: 'DELETE',
+        url: `/api/UnfinishedRecipes/${idToDelete}`
+    })
+    yield put({
+        type: 'SAGA/FETCH_UNFINISHED'
+    })
+}
+
 function* unfinishedSaga() {
     yield takeEvery('SAGA/FETCH_UNFINISHED', fetchUnfinishedRecipes);
+    yield takeEvery('SAGA/DELETE_UNFINISHED', deleteRecipe);
 }
 
 export default unfinishedSaga;

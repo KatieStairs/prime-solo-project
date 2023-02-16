@@ -16,11 +16,16 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   });
 });
 
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-  // POST route code here
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+  console.log('REQ.PARAMS.ID for DELETE', req.params.id);
+  const sqlQuery = 'DELETE FROM "unfinished_recipes" where recipe_id=$1'
+  pool.query(sqlQuery, [req.params.id])
+    .then((response) => { 
+      res.sendStatus(200); 
+    }).catch((error) => {
+      console.log('Error in Unfinished Delete', error)
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;
