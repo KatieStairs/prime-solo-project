@@ -49,16 +49,16 @@ const StartCookin = () => {
     const user = useSelector(store => store.user)
 
     const addNewRecipe = (event) => {
-      console.log('user', user.id, user.username, 'adding', nameInput)
-        dispatch({
-            type: 'SAGA/CREATE_RECIPE',
-            payload: {
-              recipe_author: authorInput,
-              recipe_name: nameInput,
-              recipe_ingredients: ingredientsInput,
-              recipe_directions: directionsInput,
-              recipe_notes: notesInput,
-              user_id: user.id
+        console.log('user', user.id, user.username, 'adding', nameInput)
+            dispatch({
+                type: 'SAGA/CREATE_RECIPE',
+                payload: {
+                recipe_author: authorInput,
+                recipe_name: nameInput,
+                recipe_ingredients: ingredientsInput,
+                recipe_directions: directionsInput,
+                recipe_notes: notesInput,
+                user_id: user.id
           }
         })
 
@@ -111,26 +111,54 @@ const StartCookin = () => {
                     <button onClick={resetTranscript}>Reset</button>
             <div>
                 <Box
-                    mx={6}
-                    my={3}
+                    mx={2}
+                    my={1}
                     border={4}
-                    px={2}
-                    py={3}
+                    px={1}
+                    py={1.5}
                     borderColor="black"
-                    height={300}
-                    width={800}
+                    height={200}
+                    width={320}
                     display="flex"
                     justifyContent="left"
                     alignItems="left"
                     bgcolor="white"
                     color="black"
-                    fontSize={20}
+                    fontSize={14}
                 >
                     {transcript}
                 </Box>
-            
             </div>
-        </div>
+            <h3>Create New Recipe:</h3>
+            <form onSubmit={addNewRecipe}>
+                <input
+                    type='text'
+                    placeholder="Author"
+                    value={authorInput}
+                    onChange={(evt) => setAuthorInput(evt.target.value)} />
+                <input
+                    type='text'
+                    placeholder="Name"
+                    value={nameInput}
+                    onChange={(evt) => setNameInput(evt.target.value)} />
+                <input
+                    type='text'
+                    placeholder="Ingredients"
+                    value={ingredientsInput}
+                    onChange={(evt) => setIngredientsInput(evt.target.value)} />
+                <input
+                    type='text'
+                    placeholder="Directions"
+                    value={directionsInput}
+                    onChange={(evt) => setDirectionsInput(evt.target.value)} />
+                <input
+                    type='text'
+                    placeholder="Notes"
+                    value={notesInput}
+                    onChange={(evt) => setNotesInput(evt.target.value)} />
+                <input type='submit' value='Add New Recipe' />
+            </form>
+        </div> 
     );
 };
 
