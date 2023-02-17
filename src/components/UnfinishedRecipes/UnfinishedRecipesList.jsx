@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-import UnfinishedRecipeItem from './UnfinishedRecipeItem';
+import UnfinishedRecipesItem from './UnfinishedRecipesItem';
 
 function UnfinishedRecipesList() {
     const dispatch = useDispatch();
@@ -21,7 +21,7 @@ function UnfinishedRecipesList() {
         <div>
             <h3>Unfinished Recipes List:</h3>
             {unfinishedRecipesList.map((unfinished) => {
-                    return <UnfinishedRecipeItem key={unfinished.recipe_id} unfinished={unfinished} />
+                    return <UnfinishedRecipesItem key={unfinished.recipe_id} unfinished={unfinished} />
                 //     <Box
                 //     key={unfinished.id}
                 //     mx={6}

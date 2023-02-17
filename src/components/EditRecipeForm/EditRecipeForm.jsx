@@ -19,74 +19,51 @@ function EditRecipeForm() {
         })
     }, []);
 
-    const handleRecipeNameChange = (event) => {
+    const handleRecipeNameSubmit = (event) => {
+        console.log('event.target.value Name PUT SAGA', event.target.value)
         dispatch({
             type: 'SET_RECIPE_NAME',
             payload: event.target.value
         })
     }
 
-    const handleRecipeIngredientsChange = (event) => {
+    const handleRecipeAuthorSubmit = (event) => {
+        event.preventDefault();
+        dispatch({
+            type: 'SET_RECIPE_AUTHOR',
+            payload: event.target.value
+        })
+    }
+
+    const handleRecipeIngredientsSubmit = (event) => {
+        event.preventDefault();
         dispatch({
             type: 'SET_RECIPE_INGREDIENTS',
             payload: event.target.value
         })
     }
 
-    const handleRecipeDirectionsChange = (event) => {
+    const handleRecipeDirectionsSubmit = (event) => {
+        event.preventDefault();
         dispatch({
             type: 'SET_RECIPE_DIRECTIONS',
             payload: event.target.value
         })
     }
 
-    const handleRecipeNotesChange = (event) => {
+    const handleRecipeNotesSubmit = (event) => {
+        event.preventDefault();
         dispatch({
             type: 'SET_RECIPE_NOTES',
             payload: event.target.value
         })
     }
 
-    const handleRecipeNameSubmit = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
+        console.log('handleSubmit', recipeToEdit)
         dispatch({
-            type: 'UPDATE_RECIPE_NAME',
-            payload: recipeToEdit
-        })
-        // history.push('/UnfinishedRecipes')
-    }
-
-    const handleRecipeAuthorSubmit = (event) => {
-        event.preventDefault();
-        dispatch({
-            type: 'UPDATE_RECIPE_AUTHOR',
-            payload: recipeToEdit
-        })
-        // history.push('/UnfinishedRecipes')
-    }
-
-    const handleRecipeIngredientsSubmit = (event) => {
-        event.preventDefault();
-        dispatch({
-            type: 'UPDATE_RECIPE_INGREDIENTS',
-            payload: recipeToEdit
-        })
-        // history.push('/UnfinishedRecipes')
-    }
-
-    const handleRecipeDirectionsSubmit = (event) => {
-        event.preventDefault();
-        dispatch({
-            type: 'UPDATE_RECIPE_DIRECTIONS',
-            payload: recipeToEdit
-        })
-        // history.push('/UnfinishedRecipes')
-    }
-
-    const handleRecipeNotesSubmit = (event) => {
-        event.preventDefault();
-        dispatch({
-            type: 'UPDATE_RECIPE_NOTES',
+            type: 'UPDATE_RECIPE',
             payload: recipeToEdit
         })
         // history.push('/UnfinishedRecipes')
@@ -97,7 +74,7 @@ function EditRecipeForm() {
             <h2>Edit Recipe</h2>
             <form>
                 <h4>Recipe Name:</h4>
-                <Box //onChange={(event) => setIngredientsInput(event.target.value)}
+                <Box 
                 mx={6}
                 my={3}
                 border={4}
@@ -119,10 +96,11 @@ function EditRecipeForm() {
                     multiline
                     minRows={3.5}
                     defaultValue={recipeToEdit.recipe_name || ''}
+                    onChange={handleRecipeNameSubmit}
                     fullWidth
                 />
                 </Box>
-            <button onClick={handleRecipeNameSubmit}>Recipe Name Submit</button>
+            <button onClick={handleSubmit}>Update Recipe Name</button>
                 <h4>Recipe Author:</h4>
                 <Box //onChange={(event) => setIngredientsInput(event.target.value)}
                 mx={6}
@@ -146,10 +124,11 @@ function EditRecipeForm() {
                     multiline
                     minRows={3.5}
                     defaultValue={recipeToEdit.recipe_author || ''}
+                    onChange={handleRecipeAuthorSubmit}
                     fullWidth
                 />
                 </Box>
-            <button onClick={handleRecipeAuthorSubmit}>Recipe Name Submit</button>
+            <button onClick={handleSubmit}>Update Recipe Author</button>
                 <h4>Recipe Ingredients:</h4>
                 <Box //onChange={(event) => setIngredientsInput(event.target.value)}
                 mx={6}
@@ -173,10 +152,11 @@ function EditRecipeForm() {
                     multiline
                     minRows={8.5}
                     defaultValue={recipeToEdit.recipe_ingredients || ''}
+                    onChange={handleRecipeIngredientsSubmit}
                     fullWidth
                 />
                 </Box>
-            <button onClick={handleRecipeIngredientsSubmit}>Recipe Name Submit</button>
+            <button onClick={handleSubmit}>Update Recipe Ingredients</button>
                 <h4>Recipe Directions:</h4>
                 <Box //onChange={(event) => setIngredientsInput(event.target.value)}
                 mx={6}
@@ -200,10 +180,11 @@ function EditRecipeForm() {
                     multiline
                     minRows={8.5}
                     defaultValue={recipeToEdit.recipe_directions || ''}
+                    onChange={handleRecipeDirectionsSubmit}
                     fullWidth
                 />
                 </Box>
-            <button onClick={handleRecipeDirectionsSubmit}>Recipe Name Submit</button>
+            <button onClick={handleSubmit}>Update Recipe Directions</button>
                 <h4>Recipe Notes:</h4>
                 <Box //onChange={(event) => setIngredientsInput(event.target.value)}
                 mx={6}
@@ -227,10 +208,11 @@ function EditRecipeForm() {
                     multiline
                     minRows={8.5}
                     defaultValue={recipeToEdit.recipe_notes || ''}
+                    onChange={handleRecipeNotesSubmit}
                     fullWidth
                 />
                 </Box>
-            <button onClick={handleRecipeNotesSubmit}>Recipe Name Submit</button>
+            <button onClick={handleSubmit}>Update Recipe Notes</button>
                 {/* <Input 
                     type="text"
                     value={recipeToEdit.recipe_name || ''}

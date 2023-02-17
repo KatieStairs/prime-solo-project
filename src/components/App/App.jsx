@@ -22,7 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import StartCookin from '../StartCookin/StartCookin';
 import UnfinishedRecipesList from '../UnfinishedRecipes/UnfinishedRecipesList';
 import EditRecipe from '../EditRecipe/EditRecipe';
-import FinishedRecipes from '../FinishedRecipes/FinishedRecipes';
+import FinishedRecipesList from '../FinishedRecipes/FinishedRecipesList';
 import EditRecipeForm from '../EditRecipeForm/EditRecipeForm';
 
 
@@ -115,7 +115,7 @@ function App() {
             exact
             path="/FinishedRecipes"
           >
-            <FinishedRecipes />
+            <FinishedRecipesList />
             {/* <Clipboard /> */}
           </ProtectedRoute>
 

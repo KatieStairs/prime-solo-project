@@ -27,8 +27,8 @@ router.delete('/:id', (req, res) => {
   console.log('************', req.params.id)
   const idToDelete = req.params.id;
   const sqlQuery = `
-    DELETE FROM "finalizedRecipes"
-      WHERE "id" = $1;
+    DELETE FROM "finalized_recipes"
+      WHERE "recipe_id" = $1;
   `;
   const sqlValue = [idToDelete];
   pool.query(sqlQuery, sqlValue)

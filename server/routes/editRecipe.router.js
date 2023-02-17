@@ -34,6 +34,64 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
         })
 });
 
+/**
+ * POST route template
+ */
+router.post('/', rejectUnauthenticated, (req, res) => {
+  console.log(req.body)
+  const recipeIngredients = req.body.recipeIngredients;
+  console.log('************', req.body.recipeIngredients)
+  const sqlText = `
+  INSERT INTO "unfinished_recipes" ("recipe_author, "recipe_name", "recipe_ingredients", "recipe_directions", "recipe_notes")
+  VALUES ($1, $2, $3, $4, $5);
+  `
+  pool.query(sqlText, [recipeIngredients])
+    .then((result) => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log(`Error making database query ${sqlText}`, error)
+      res.sendStatus(500);
+    });
+});
+
+//TODO: Need to finish these put routes so they are accurate for each column
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+  const idToUpdate = req.params.id;
+  console.log('server put recipe name id', req.params.id)
+  const sqlText = `
+    UPDATE "unfinished_recipes"
+      SET "recipe_name"=$1
+      WHERE "recipe_id"=$2
+  `;
+  pool.query(sqlText, [req.body.recipe_name, idToUpdate])
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('Error in put name db query', error)
+      res.sendStatus(500);
+    });
+});
+
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+  const idToUpdate = req.params.id;
+  console.log('server put', req.params.id)
+  const sqlText = `
+    UPDATE "unfinished_recipes"
+      SET "recipe_name"=$1
+      WHERE "recipe_id"=$2
+  `;
+  pool.query(sqlText, [req.body.recipe_name, idToUpdate])
+    .then((results) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(`Error in db query ${sqlText}`, error)
+      res.sendStatus(500);
+    });
+});
+
 router.put('/:id', rejectUnauthenticated, (req, res) => {
   const idToUpdate = req.params.id;
   console.log('server put', req.params)
@@ -52,23 +110,38 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
-/**
- * POST route template
- */
-router.post('/', rejectUnauthenticated, (req, res) => {
-  console.log(req.body)
-  const recipeIngredients = req.body.recipeIngredients;
-  console.log('************', req.body.recipeIngredients)
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+  const idToUpdate = req.params.id;
+  console.log('server put', req.params)
   const sqlText = `
-  INSERT INTO "unfinished_recipes" ("recipe_author, "recipe_name", "recipe_ingredients", "recipe_directions", "recipe_notes")
-  VALUES ($1, $2, $3, $4, $5);
-  `
-  pool.query(sqlText, [recipeIngredients])
-    .then((result) => {
-      res.sendStatus(201);
+    UPDATE "unfinished_recipes"
+      SET "recipe_name"=$1
+      WHERE "recipe_id"=$2
+  `;
+  pool.query(sqlText, [req.body.recipe_name, idToUpdate])
+    .then((results) => {
+      res.sendStatus(200);
     })
     .catch((error) => {
-      console.log(`Error making database query ${sqlText}`, error)
+      console.log(`Error in db query ${sqlText}`, error)
+      res.sendStatus(500);
+    });
+});
+
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+  const idToUpdate = req.params.id;
+  console.log('server put', req.params)
+  const sqlText = `
+    UPDATE "unfinished_recipes"
+      SET "recipe_name"=$1
+      WHERE "recipe_id"=$2
+  `;
+  pool.query(sqlText, [req.body.recipe_name, idToUpdate])
+    .then((results) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(`Error in db query ${sqlText}`, error)
       res.sendStatus(500);
     });
 });
