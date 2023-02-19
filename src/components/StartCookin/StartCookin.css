@@ -1,6 +1,62 @@
-.speechToText {
+/* speechToText {
    border: 10px;
    width: 1000px;
    margin: 3px auto;
    position: relative;
+}
+
+microphone {
+   margin: 10px;
+   border: 10px
+} */
+
+Button {
+   /* margin: 10px; */
+   margin-left: 80px;
+   margin-right: -60px;
+   margin-top: -20px;
+   margin-bottom: 0px;
+   width: 140px;
+   position: inherit;
+   display: inline;
+}
+
+h3 {
+   margin-left: 80px;
+   margin-right: -60px;
+   margin-bottom: 10px;
+   width: 175px;
+   position: relative;
+   display: inline;
+}
+
+h2 {
+   margin-top: -20px;
+}
+
+form {
+   margin-left: 80px;
+   margin-right: -60px;
+   margin-top: 20px;
+   width: 175px;
+   position: relative;
+   display: inline;
+}
+
+InputGroup {
+   margin-left: 80px;
+   margin-right: -60px;
+   margin-top: 20px;
+   width: 175px;
+   position: relative;
+   display: inline;
+}
+
+textarea {
+   margin-left: 80px;
+   margin-right: -60px;
+   margin-top: 10px;
+   width: 1055px;
+   position: relative;
+   display: inline;
 }
