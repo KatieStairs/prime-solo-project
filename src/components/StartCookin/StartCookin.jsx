@@ -84,52 +84,93 @@ const StartCookin = () => {
         })
     }, []);
 
+    const clickToAutofill = () => {
+        setAuthorInput('The Schmidty Wife');
+        setNameInput('Simple Spinach Salad');
+    }
+
     return(
         <div>
             <Box
-                mx={1}
-                my={1}
+                mx={10}
+                my={4}
                 border={1}
-                px={1}
-                py={1}
-                borderColor="aqua"
-                height={50}
-                width={320}
+                px={4}
+                py={4}
+                borderColor="gray"
+                height={44}
+                width={620}
                 display="flex"
                 justifyContent="left"
-                alignItems="left"
+                alignItems="center"
                 bgcolor="white"
                 color="black"
-                fontSize={10}
+                fontSize={16}
             >
                 Press Start to begin recording 
-                and the microphone will record continuously. 
-                Otherwise, you can press reset to clear the transcript
-                MAKE SURE YOU HAVE COPIED YOUR 
-                RECIPE TO THE CLIPBOARD BEFORE RESETTING.
+                and the microphone will record continuously.
+                <br/>
+                Press Stop and the recording will Pause until it is Reset.
+                <br />
+                Press reset to clear the transcript.
+                <br/>
+                Make sure to copy the text from the box into 
+                the correct input below.
             </Box>
-                <h3>Microphone: {listening ? 'on' : 'off'}</h3>
-                    <button onClick={startListening}>Start/Resume</button>
-                    <button onClick={SpeechRecognition.stopListening}>Stop/Pause</button>
-                    <button onClick={resetTranscript}>Reset</button>
+            <Box
+                mx={6}
+                my={2}
+                // border={1}
+                px={4}
+                py={2}
+                // borderColor="green"
+                height={2}
+                width={820}
+                display="flex"
+                justifyContent="left"
+                alignItems="center"
+                bgcolor="white"
+                color="black"
+                // fontSize={10}
+            >
+                <h2>Microphone: {listening ? 'on' : 'off'}</h2>
+                </Box>
+                <Button 
+                variant="outline-secondary"
+                onClick={startListening}
+                >
+                Start/Resume
+                </Button>
+                <Button 
+                variant="outline-secondary"
+                onClick={SpeechRecognition.stopListening}
+                >
+                Stop/Pause
+                </Button>
+                <Button 
+                variant="outline-secondary"
+                onClick={resetTranscript}
+                >
+                Reset
+                </Button>
             <div>
-                <input 
+                {/* <input 
                     type="checkbox" 
                     id="questionOne" 
                     name="subscribe" 
                     value="yes"
                     placeholder="Save this recording?" 
                     checked 
-                    />
+                    /> */}
                 <Box
-                    mx={2}
-                    my={1}
-                    border={4}
-                    px={1}
-                    py={1.5}
-                    borderColor="black"
-                    height={200}
-                    width={320}
+                    mx={10}
+                    my={3}
+                    border={2}
+                    px={2}
+                    py={2}
+                    borderColor="gray"
+                    height={75}
+                    width={1020}
                     display="flex"
                     justifyContent="left"
                     alignItems="left"
@@ -140,34 +181,47 @@ const StartCookin = () => {
                     {transcript}
                 </Box>
             </div>
-            <h3>Create New Recipe:</h3>
+            <h3 onClick={clickToAutofill}>Create New Recipe:</h3>
             <form onSubmit={addNewRecipe}>
-                <InputGroup>
-                    {/* <InputGroup.Text>With textarea</InputGroup.Text> */}
-                    <Form.Control as="textarea" 
-                    aria-label="With textarea"
-                    spellcheck="true"
-                    />
-                </InputGroup>
-                <InputGroup>
-                    {/* <InputGroup.Text>With textarea</InputGroup.Text> */}
-                    <Form.Control as="textarea" 
-                    aria-label="With textarea"
-
-                    />
-                </InputGroup>
-                <Button variant="outline-secondary">Button</Button>
-                <input
+            <input
                     type='text'
                     placeholder="Author"
                     value={authorInput}
                     onChange={(evt) => setAuthorInput(evt.target.value)} />
                 <input
                     type='text'
-                    placeholder="Name"
+                    placeholder="Recipe Name"
                     value={nameInput}
                     onChange={(evt) => setNameInput(evt.target.value)} />
-                <input
+                <InputGroup className="InputGroup">
+                    <Form.Control as="textarea" 
+                    aria-label="Ingredients"
+                    placeholder="Ingredients"
+                    onChange={(evt) => setIngredientsInput(evt.target.value)}
+                    rows={6}
+                    width={100}
+                    htmlSize={20}
+                    />
+                </InputGroup>
+                <InputGroup>
+                    {/* <InputGroup.Text>With textarea</InputGroup.Text> */}
+                    <Form.Control as="textarea" 
+                    aria-label="Directions"
+                    placeholder="Directions"
+                    onChange={(evt) => setDirectionsInput(evt.target.value)}
+                    rows={6}
+                    />
+                </InputGroup>
+                <InputGroup>
+                    {/* <InputGroup.Text>With textarea</InputGroup.Text> */}
+                    <Form.Control as="textarea" 
+                    aria-label="Notes"
+                    placeholder="Notes"
+                    onChange={(evt) => setNotesInput(evt.target.value)}
+                    rows={6}
+                    />
+                </InputGroup>
+                {/* <input
                     type='text'
                     placeholder="Ingredients"
                     value={ingredientsInput}
@@ -181,8 +235,15 @@ const StartCookin = () => {
                     type='text'
                     placeholder="Notes"
                     value={notesInput}
-                    onChange={(evt) => setNotesInput(evt.target.value)} />
-                <input type='submit' value='Add New Recipe' />
+                    onChange={(evt) => setNotesInput(evt.target.value)} /> */}
+                <Button 
+                variant="outline-secondary"
+                type='submit' 
+                // value='Add New Recipe'
+                // placeholder='Add New Recipe'
+                >
+                Add New Recipe
+                </Button>
             </form>
         </div> 
     );
