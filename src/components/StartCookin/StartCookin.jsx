@@ -11,7 +11,10 @@ import Box from '@material-ui/core/Box';
 import Input from '@material-ui/core/Input'
 import { NetworkWifiRounded } from '@material-ui/icons';
 import TextField from '@material-ui/core/TextField';
-import { Button, Snackbar } from '@mui/material'
+// import { Button, Snackbar } from '@mui/material'
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Button from 'react-bootstrap/Button'
 
 const StartCookin = () => {
   const [value, setValue] = useState('');
@@ -110,6 +113,14 @@ const StartCookin = () => {
                     <button onClick={SpeechRecognition.stopListening}>Stop/Pause</button>
                     <button onClick={resetTranscript}>Reset</button>
             <div>
+                <input 
+                    type="checkbox" 
+                    id="questionOne" 
+                    name="subscribe" 
+                    value="yes"
+                    placeholder="Save this recording?" 
+                    checked 
+                    />
                 <Box
                     mx={2}
                     my={1}
@@ -131,6 +142,21 @@ const StartCookin = () => {
             </div>
             <h3>Create New Recipe:</h3>
             <form onSubmit={addNewRecipe}>
+                <InputGroup>
+                    {/* <InputGroup.Text>With textarea</InputGroup.Text> */}
+                    <Form.Control as="textarea" 
+                    aria-label="With textarea"
+                    spellcheck="true"
+                    />
+                </InputGroup>
+                <InputGroup>
+                    {/* <InputGroup.Text>With textarea</InputGroup.Text> */}
+                    <Form.Control as="textarea" 
+                    aria-label="With textarea"
+
+                    />
+                </InputGroup>
+                <Button variant="outline-secondary">Button</Button>
                 <input
                     type='text'
                     placeholder="Author"
