@@ -18,7 +18,7 @@ function FinishedRecipesList () {
 
     return (
         <div>
-            <h3>Finished Recipes List:</h3>
+            <h1>Finished Recipes:</h1>
             {finishedRecipesList.map((finished) => {
                     return <FinishedRecipesItem key={finished.recipe_id} finished={finished} 
                     />
