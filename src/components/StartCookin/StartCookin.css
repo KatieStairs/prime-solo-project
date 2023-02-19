@@ -1,14 +1,3 @@
-/* speechToText {
-   border: 10px;
-   width: 1000px;
-   margin: 3px auto;
-   position: relative;
-}
-
-microphone {
-   margin: 10px;
-   border: 10px
-} */
 
 Button {
    /* margin: 10px; */
@@ -19,6 +8,7 @@ Button {
    width: 140px;
    position: inherit;
    display: inline;
+   /* background-color: darkcyan; */
 }
 
 h3 {
@@ -28,10 +18,12 @@ h3 {
    width: 175px;
    position: relative;
    display: inline;
+   /* background-color: darkcyan; */
 }
 
 h2 {
    margin-top: -20px;
+   /* background-color: darkcyan; */
 }
 
 form {
@@ -41,6 +33,7 @@ form {
    width: 175px;
    position: relative;
    display: inline;
+   /* background-color: darkcyan; */
 }
 
 InputGroup {
@@ -50,6 +43,7 @@ InputGroup {
    width: 175px;
    position: relative;
    display: inline;
+   /* background-color: darkcyan; */
 }
 
 textarea {
@@ -59,4 +53,5 @@ textarea {
    width: 1055px;
    position: relative;
    display: inline;
+   /* background-color: lightgray; */
 }
