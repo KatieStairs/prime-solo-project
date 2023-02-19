@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Input from '@material-ui/core/Input';
 import { TextField, Box } from '@material-ui/core';
+import Button from 'react-bootstrap/Button'
 
 function EditRecipeForm() {
 
@@ -71,8 +72,8 @@ function EditRecipeForm() {
 
     return (
         <div>
-            <h2>Edit Recipe</h2>
             <form>
+                {/* <h1>Edit Recipe</h1> */}
                 <h4>Recipe Name:</h4>
                 <Box 
                 mx={6}
@@ -99,9 +100,9 @@ function EditRecipeForm() {
                     onChange={handleRecipeNameSubmit}
                     fullWidth
                 />
+                <Button onClick={handleSubmit}>Update Name</Button>
                 </Box>
-            <button onClick={handleSubmit}>Update Recipe Name</button>
-                <h4>Recipe Author:</h4>
+                <h3>Recipe Author:</h3>
                 <Box //onChange={(event) => setIngredientsInput(event.target.value)}
                 mx={6}
                 my={3}
@@ -127,9 +128,9 @@ function EditRecipeForm() {
                     onChange={handleRecipeAuthorSubmit}
                     fullWidth
                 />
-                </Box>
-            <button onClick={handleSubmit}>Update Recipe Author</button>
-                <h4>Recipe Ingredients:</h4>
+            <Button onClick={handleSubmit}>Update Author</Button>
+            </Box>
+                <h2>Recipe Ingredients:</h2>
                 <Box //onChange={(event) => setIngredientsInput(event.target.value)}
                 mx={6}
                 my={3}
@@ -155,9 +156,9 @@ function EditRecipeForm() {
                     onChange={handleRecipeIngredientsSubmit}
                     fullWidth
                 />
+                <Button onClick={handleSubmit}>Update Recipe Ingredients</Button>
                 </Box>
-            <button onClick={handleSubmit}>Update Recipe Ingredients</button>
-                <h4>Recipe Directions:</h4>
+                <h2>Recipe Directions:</h2>
                 <Box //onChange={(event) => setIngredientsInput(event.target.value)}
                 mx={6}
                 my={3}
@@ -184,8 +185,8 @@ function EditRecipeForm() {
                     fullWidth
                 />
                 </Box>
-            <button onClick={handleSubmit}>Update Recipe Directions</button>
-                <h4>Recipe Notes:</h4>
+            <Button onClick={handleSubmit}>Update Recipe Directions</Button>
+                <h2>Recipe Notes:</h2>
                 <Box //onChange={(event) => setIngredientsInput(event.target.value)}
                 mx={6}
                 my={3}
@@ -201,7 +202,7 @@ function EditRecipeForm() {
                 bgcolor="white"
                 color="black"
                 fontSize={14}
-                 >
+                >
                 <TextField
                     id="outlined-multiline-static"
                     // label="Edit Recipe Notes:"
@@ -212,7 +213,7 @@ function EditRecipeForm() {
                     fullWidth
                 />
                 </Box>
-            <button onClick={handleSubmit}>Update Recipe Notes</button>
+            <Button onClick={handleSubmit}>Update Recipe Notes</Button>
                 {/* <Input 
                     type="text"
                     value={recipeToEdit.recipe_name || ''}

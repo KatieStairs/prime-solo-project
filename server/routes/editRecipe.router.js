@@ -58,90 +58,22 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 //TODO: Need to finish these put routes so they are accurate for each column
 router.put('/:id', rejectUnauthenticated, (req, res) => {
   const idToUpdate = req.params.id;
-  console.log('server put recipe name id', req.params.id)
   const sqlText = `
     UPDATE "unfinished_recipes"
-      SET "recipe_name"=$1
-      WHERE "recipe_id"=$2
+      SET 
+      "recipe_name"=$1,
+      "recipe_author"=$2,
+      "recipe_ingredients"=$3,
+      "recipe_directions"=$4,
+      "recipe_notes"=$5
+      WHERE "recipe_id"=$6
   `;
-  pool.query(sqlText, [req.body.recipe_name, idToUpdate])
+  pool.query(sqlText, [req.body.recipe_name, req.body.recipe_author, req.body.recipe_ingredients, req.body.recipe_directions, req.body.recipe_notes, idToUpdate])
     .then((result) => {
       res.sendStatus(200);
     })
     .catch((error) => {
       console.log('Error in put name db query', error)
-      res.sendStatus(500);
-    });
-});
-
-router.put('/:id', rejectUnauthenticated, (req, res) => {
-  const idToUpdate = req.params.id;
-  console.log('server put', req.params.id)
-  const sqlText = `
-    UPDATE "unfinished_recipes"
-      SET "recipe_name"=$1
-      WHERE "recipe_id"=$2
-  `;
-  pool.query(sqlText, [req.body.recipe_name, idToUpdate])
-    .then((results) => {
-      res.sendStatus(200);
-    })
-    .catch((error) => {
-      console.log(`Error in db query ${sqlText}`, error)
-      res.sendStatus(500);
-    });
-});
-
-router.put('/:id', rejectUnauthenticated, (req, res) => {
-  const idToUpdate = req.params.id;
-  console.log('server put', req.params)
-  const sqlText = `
-    UPDATE "unfinished_recipes"
-      SET "recipe_name"=$1
-      WHERE "recipe_id"=$2
-  `;
-  pool.query(sqlText, [req.body.recipe_name, idToUpdate])
-    .then((results) => {
-      res.sendStatus(200);
-    })
-    .catch((error) => {
-      console.log(`Error in db query ${sqlText}`, error)
-      res.sendStatus(500);
-    });
-});
-
-router.put('/:id', rejectUnauthenticated, (req, res) => {
-  const idToUpdate = req.params.id;
-  console.log('server put', req.params)
-  const sqlText = `
-    UPDATE "unfinished_recipes"
-      SET "recipe_name"=$1
-      WHERE "recipe_id"=$2
-  `;
-  pool.query(sqlText, [req.body.recipe_name, idToUpdate])
-    .then((results) => {
-      res.sendStatus(200);
-    })
-    .catch((error) => {
-      console.log(`Error in db query ${sqlText}`, error)
-      res.sendStatus(500);
-    });
-});
-
-router.put('/:id', rejectUnauthenticated, (req, res) => {
-  const idToUpdate = req.params.id;
-  console.log('server put', req.params)
-  const sqlText = `
-    UPDATE "unfinished_recipes"
-      SET "recipe_name"=$1
-      WHERE "recipe_id"=$2
-  `;
-  pool.query(sqlText, [req.body.recipe_name, idToUpdate])
-    .then((results) => {
-      res.sendStatus(200);
-    })
-    .catch((error) => {
-      console.log(`Error in db query ${sqlText}`, error)
       res.sendStatus(500);
     });
 });
