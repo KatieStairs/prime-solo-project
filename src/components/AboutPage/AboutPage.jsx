@@ -30,7 +30,7 @@ function AboutPage() {
       <div>
         <h2>Contact Information:</h2>
         <p><a href="https://www.linkedin.com/in/katie-stairs-695b7780/">LinkedIn</a></p>
-        <a href="https://github.com/KatieStairs">GitHub</a>
+        <p><a href="https://github.com/KatieStairs">GitHub</a></p>
       </div>
       <br/>
       <div>
