@@ -17,7 +17,7 @@ const recipeToEdit = (state={}, action) => {
     } else if (action.type === 'SET_RECIPE_NOTES'){
         const newRecipeNotesValue = action.payload;
         return{...state, recipe_notes: newRecipeNotesValue}
-    }
+    } 
     return state;
 };
 

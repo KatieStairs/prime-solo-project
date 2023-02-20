@@ -5,8 +5,7 @@ const router = express.Router();
 
 router.get('/', rejectUnauthenticated, (req, res) => {
   console.log('GET /api/UnfinishedRecipes', 'should not be run for edit recipes');
-  pool
-    .query(`
+  pool.query(`
     SELECT * from "unfinished_recipes";
     `).then((result) => {
     res.send(result.rows);

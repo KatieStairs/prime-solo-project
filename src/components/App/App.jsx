@@ -21,9 +21,9 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import StartCookin from '../StartCookin/StartCookin';
 import UnfinishedRecipesList from '../UnfinishedRecipes/UnfinishedRecipesList';
-import EditRecipe from '../EditRecipe/EditRecipe';
 import FinishedRecipesList from '../FinishedRecipes/FinishedRecipesList';
 import EditRecipeForm from '../EditRecipeForm/EditRecipeForm';
+import FullRecipeView from '../FinishedRecipes/FullRecipeView';
 
 
 import './App.css';
@@ -116,6 +116,15 @@ function App() {
             path="/FinishedRecipes"
           >
             <FinishedRecipesList />
+            {/* <Clipboard /> */}
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/FullRecipeView/:id"
+          >
+            <FullRecipeView />
             {/* <Clipboard /> */}
           </ProtectedRoute>
 
