@@ -42,6 +42,7 @@ const StartCookin = () => {
     }
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const [authorInput, setAuthorInput] = useState('');
     const [nameInput, setNameInput] = useState('');
@@ -62,9 +63,9 @@ const StartCookin = () => {
                 recipe_directions: directionsInput,
                 recipe_notes: notesInput,
                 user_id: user.id
-          }
-        })
-
+        }
+    })
+        history.push('/UnfinishedRecipes')
         clearRecipeForm();
     }
 

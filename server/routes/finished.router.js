@@ -4,12 +4,11 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-  console.log('GET /api/finishedRecipes');
-  pool
-    .query(`
+  pool.query(`
     SELECT * from "finalized_recipes";
     `).then((result) => {
     res.send(result.rows);
+    console.log('GET /api/finishedRecipes', result.rows);
   }).catch((error) => {
     console.log('Error in GET /api/finishedRecipes', error)
     res.sendStatus(500);
