@@ -5,6 +5,7 @@ import unfinishedRecipesList from './unfinished.reducer';
 import finishedRecipesList from './finished.reducer';
 import recipeToEdit from './editRecipe.reducer';
 import createRecipe from './startCookin.reducer';
+import recipeToView from './view.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   finishedRecipesList,
   recipeToEdit,
   createRecipe,
+  recipeToView,
 });
 
 export default rootReducer;

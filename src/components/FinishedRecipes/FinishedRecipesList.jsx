@@ -20,8 +20,7 @@ function FinishedRecipesList () {
         <div>
             <h1>Finished Recipes:</h1>
             {finishedRecipesList.map((finished) => {
-                    return <FinishedRecipesItem key={finished.recipe_id} finished={finished} 
-                    />
+                    return <FinishedRecipesItem key={finished.recipe_id} finished={finished} />
                 })}
         </div>
     )

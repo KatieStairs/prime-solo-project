@@ -45,28 +45,6 @@ function UnfinishedRecipeItem({ unfinished }) {
             </Col>
             </Row>
         </Container>
-
-        //     <Box
-        //         key={unfinished.recipe_id}
-        //         mx={6}
-        //         my={3}
-        //         border={4}
-        //         px={2}
-        //         py={3}
-        //         borderColor="black"
-        //         height={75}
-        //         width={800}
-        //         display="flex"
-        //         justifyContent="center"
-        //         alignItems="center"
-        //         bgcolor="white"
-        //         color="black"
-        //         fontSize={40}
-        //     >
-        //     {unfinished.recipe_name} By {unfinished.recipe_author}
-        //     <Button variant="contained" onClick={goToEditIngredientsPage}>Edit Recipe</Button>
-        //     <Button variant="contained" onClick={deleteRecipe}>Delete</Button>
-        // </Box>
     )
 }
 

@@ -13,9 +13,9 @@ function FinishedRecipesItem ({ finished }) {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    // const goToFullView = () => {
-    //     history.push(`/EditRecipe/${finished.recipe_id}`)
-    // }
+    const goToFullView = () => {
+        history.push(`/FullRecipeView/${finished.recipe_id}`)
+    }
 
     const deleteRecipe = () => {
         dispatch({
@@ -39,7 +39,7 @@ function FinishedRecipesItem ({ finished }) {
             <Card.Text as="h3">
                 By {finished.finalized_author}
             </Card.Text>
-            <Button variant="outline-secondary">Edit Recipe</Button>
+            <Button variant="outline-secondary" onClick={goToFullView}>View</Button>
             <Button variant="outline-secondary" onClick={deleteRecipe}>Delete</Button>
         </Card.Body>
         </Card>

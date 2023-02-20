@@ -13,6 +13,7 @@ const unfinishedRouter = require('./routes/unfinished.router');
 const editRecipeRouter = require('./routes/editRecipe.router');
 const finishedRecipesRouter = require('./routes/finished.router');
 const startCookinRouter = require('./routes/startCookin.router')
+const fullRecipeRouter = require('./routes/fullView.router')
 
 
 // Body parser middleware
@@ -32,6 +33,7 @@ app.use('/api/StartCookin', startCookinRouter);
 app.use('/api/UnfinishedRecipes', unfinishedRouter);
 app.use('/api/EditRecipe', editRecipeRouter);
 app.use('/api/FinishedRecipes', finishedRecipesRouter);
+app.use('/api/FullRecipeView', fullRecipeRouter)
 
 
 // Serve static files
