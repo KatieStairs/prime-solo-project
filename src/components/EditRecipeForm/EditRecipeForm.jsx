@@ -212,8 +212,8 @@ function EditRecipeForm() {
                     onChange={handleRecipeDirectionsSubmit}
                     fullWidth
                 />
+                <Button onClick={handleSubmit}>Update Recipe Directions</Button>
                 </Box>
-            <Button onClick={handleSubmit}>Update Recipe Directions</Button>
                 <h2>Recipe Notes:</h2>
                 <Box //onChange={(event) => setIngredientsInput(event.target.value)}
                 mx={6}
@@ -240,34 +240,10 @@ function EditRecipeForm() {
                     onChange={handleRecipeNotesSubmit}
                     fullWidth
                 />
+                <Button onClick={handleSubmit}>Update Recipe Notes</Button>
                 </Box>
-            <Button onClick={handleSubmit}>Update Recipe Notes</Button>
-                {/* <Input 
-                    type="text"
-                    value={recipeToEdit.recipe_name || ''}
-                    onChange={handleRecipeNameChange}
-                />
-                <button onClick={handleRecipeNameSubmit}>Recipe Name Submit</button>
-                <input 
-                    type="text"
-                    value={recipeToEdit.recipe_ingredients || ''}
-                    onChange={handleRecipeIngredientsChange}
-                />
-                <button onClick={handleRecipeIngredientsSubmit}>Ingredients Submit</button>
-                <input 
-                    type="text"
-                    value={recipeToEdit.recipe_directions || ''}
-                    onChange={handleRecipeDirectionsChange}
-                />
-                <button onClick={handleRecipeDirectionsSubmit}>Directions Submit</button>
-                <input 
-                    type="text"
-                    value={recipeToEdit.recipe_notes || ''}
-                    onChange={handleRecipeNotesChange}
-                />
-                <button onClick={handleRecipeNotesSubmit}>Notes Submit</button> */}
             </form>
-            <Button onClick={handleFinalSubmit}></Button>
+            <Button onClick={handleFinalSubmit}>Save Finished Recipe</Button>
         </div>
     )
 }

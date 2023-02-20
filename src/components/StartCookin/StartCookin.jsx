@@ -110,12 +110,12 @@ const StartCookin = () => {
                 Press Start to begin recording 
                 and the microphone will record continuously.
                 <br/>
-                Press Stop and the recording will Pause until it is Reset.
+                Press Stop and the recording will pause until it is reset.
                 <br />
                 Press reset to clear the transcript.
                 <br/>
                 Make sure to copy the text from the box into 
-                the correct input below.
+                the correct input below!
             </Box>
             <Box
                 mx={6}
@@ -133,7 +133,7 @@ const StartCookin = () => {
                 color="black"
                 // fontSize={10}
             >
-                <h2>Microphone: {listening ? 'on' : 'off'}</h2>
+                <h2 className="microphone">Microphone: {listening ? 'on' : 'off'}</h2>
                 </Box>
                 <Button 
                 variant="outline-secondary"
