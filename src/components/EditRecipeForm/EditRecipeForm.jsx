@@ -11,6 +11,7 @@ function EditRecipeForm() {
     const dispatch = useDispatch();
     const recipeToEdit = useSelector((store) => store.recipeToEdit);
     const history = useHistory();
+    const user = useSelector(store => store.user)
 
     useEffect(() => {
         console.log('params.id', params.id)
@@ -68,6 +69,33 @@ function EditRecipeForm() {
             payload: recipeToEdit
         })
         // history.push('/UnfinishedRecipes')
+    }
+
+
+    const addNewRecipe = (event) => {
+        console.log('user', user.id, user.username, 'adding', recipeToEdit.recipe_name)
+            dispatch({
+                type: 'SAGA/CREATE_FINISHED_RECIPE',
+                payload: {
+                recipe_author: recipeToEdit.recipe_author,
+                recipe_name: recipeToEdit.recipe_name,
+                recipe_ingredients: recipeToEdit.recipe_ingredients,
+                recipe_directions: recipeToEdit.recipe_directions,
+                recipe_notes: recipeToEdit.recipe_notes,
+                user_id: user.id
+          }
+        })
+    }
+
+    const handleFinalSubmit = (event) => {
+        event.preventDefault();
+        console.log('handleFinalSubmit', recipeToEdit)
+        dispatch({
+            type: 'SAGA/CREATE_FINISHED_RECIPE',
+            payload: recipeToEdit
+        })
+        addNewRecipe();
+        history.push('/FinishedRecipes')
     }
 
     return (
@@ -239,6 +267,7 @@ function EditRecipeForm() {
                 />
                 <button onClick={handleRecipeNotesSubmit}>Notes Submit</button> */}
             </form>
+            <Button onClick={handleFinalSubmit}></Button>
         </div>
     )
 }

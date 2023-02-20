@@ -25,27 +25,6 @@ function UnfinishedRecipesList() {
             
             {unfinishedRecipesList.map((unfinished) => {
                     return <UnfinishedRecipesItem key={unfinished.recipe_id} unfinished={unfinished} />
-                //     <Box
-                //     key={unfinished.id}
-                //     mx={6}
-                //     my={3}
-                //     border={4}
-                //     px={2}
-                //     py={3}
-                //     borderColor="black"
-                //     height={75}
-                //     width={800}
-                //     display="flex"
-                //     justifyContent="center"
-                //     alignItems="center"
-                //     bgcolor="white"
-                //     color="black"
-                //     fontSize={40}
-                // >
-                //     {unfinished.recipe_name} By {unfinished.recipe_author}    
-                //     <Button variant="contained">Edit</Button>
-                //     <Button variant="contained">Share</Button>
-                // </Box>
                 })}
         </div>
     )
