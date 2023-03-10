@@ -38,6 +38,7 @@ function AboutPage() {
         <ul>
           <li>Matt, Dane, Vada and all the instructors here at Prime</li>
           <li>The Vonnegut Cohort</li>
+          <li>Mentors</li>
           <li>Wesley, Ryan and all my friends and family</li>
         </ul>
       </div>

@@ -17,9 +17,9 @@ function* createRecipe (action) {
                 user_id: newRecipe.user_id
             }
         })
-        // yield put({
-        //     type: 'SAGA/FETCH_UNFINISHED',
-        // })
+        yield put({
+            type: 'SAGA/FETCH_UNFINISHED',
+        })
     } catch (error) {
         console.log('createRecipe fail:', error);
     }
