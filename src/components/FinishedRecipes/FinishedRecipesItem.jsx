@@ -18,10 +18,10 @@ function FinishedRecipesItem ({ finished }) {
     }
 
     const deleteRecipe = () => {
-        dispatch({
-            type: 'SAGA/DELETE_FINISHED',
-            payload: finished.recipe_id
-        })
+        // dispatch({
+        //     type: 'SAGA/DELETE_FINISHED',
+        //     payload: finished.recipe_id
+        // })
         console.log('*********** finished', finished)
     }
 

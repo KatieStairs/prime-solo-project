@@ -19,10 +19,10 @@ function UnfinishedRecipeItem({ unfinished }) {
     }
 
     const deleteRecipe = () => {
-        dispatch({
-            type: 'SAGA/DELETE_UNFINISHED',
-            payload: unfinished.recipe_id
-        })
+        // dispatch({
+        //     type: 'SAGA/DELETE_UNFINISHED',
+        //     payload: unfinished.recipe_id
+        // })
     }
 
     return (
